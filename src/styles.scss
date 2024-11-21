@@ -1,6 +1,3 @@
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
-
 $dark-blue-bag: #1f3a6d;
 $gold-bag: #ffd700;
 $light-bag: #a8d5ba;
@@ -12,9 +9,4 @@ $base-massges: #000000;
 *{ 
     margin: 0;
     padding: 0
-}
-
-
-:host .btn, .ngb-dp-arrow-btn {
-    color: #0d6efd!important;
 }

@@ -1,21 +1,8 @@
 <div class="wrapper">
     <div class="title"> ФІНАНСИ</div>
 
-    <div class="diapazone-date" (click)="open(content)">
-        <p>з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year : currentDate | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month + '/' + this.dateTo.year : currentDate | date: 'dd/MM/yy' }}</p>
-        <i class="small material-icons" >date_range</i>
+    <div class="diapazone-date">
+        <p>з 1/11/24 по 16/11/24</p>
+        <i class="small material-icons">date_range</i>
     </div>
-
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Виберіть період</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-        </div>
-        <div>
-            <app-calendar (onSelectedDate)="getSelectDate($event)"></app-calendar>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Save</button>
-        </div>
-    </ng-template>
 </div>
