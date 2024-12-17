@@ -1,0 +1,32 @@
+<!-- 
+<select id="langs" >
+  <option  value="uа"selected> Українська </option>
+  <option value="eng"> English </option>
+</select>
+
+<div id = "log"></div>
+
+<input type="file" class="btn-floating btn-large waves-effect waves-light red" (change)="onFileSelected($event)" accept="image/*"/>
+<button type="button" id="start"> Почати обробку </button> -->
+<div class="container">
+  <h2 class="title">ДОДАТИ НОВУ КВИТАНЦІЮ ПРО ВИТРАТИ</h2>
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <button ngbNavLink>Ввести вручну</button>
+      <ng-template ngbNavContent>
+        <app-write-new-ticket></app-write-new-ticket>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <button ngbNavLink>
+        Сканувати Чек
+        <div class="chip">Beta</div>
+      </button>
+      <ng-template ngbNavContent>
+        <app-scan-text-new-ticket></app-scan-text-new-ticket>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

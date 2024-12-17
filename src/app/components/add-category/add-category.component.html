@@ -1,0 +1,32 @@
+@if (isShowToast) {
+	<ngb-toast
+		header="Категорія була успішно додана!"
+		[delay]="5000"
+		[autohide]="true"
+        [class.bg-warning]="false"
+        class="col s8 offset-4"
+	>
+		
+	</ngb-toast>
+}
+<div class="container fl">
+    <div class="form">
+        <h3>Додати нову категорію витрат</h3>
+        <div class="row">
+            <div class="input-field col s4">
+                <input id="last_name" type="text" [(ngModel)]="categoryName" class="validate">
+                <label for="last_name">Введіть назву категорії</label>
+            </div>
+            <button (click)="handleAddCategory()" onclick="" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></button>
+        </div>
+       
+    </div>
+    <div>
+        <h3>Спислк категорій:</h3>
+        <ul *ngIf="categories">
+            <li *ngFor="let category of categories"> {{category}}</li>
+        </ul>
+        <p *ngIf="!categories">Немає категорій</p>
+    </div>
+</div>
+

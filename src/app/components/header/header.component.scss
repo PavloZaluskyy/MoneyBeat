@@ -2,4 +2,10 @@
 nav{
     background-color: #1f3a6d!important;
     font-family: Arial, Helvetica, sans-serif;
+    .nav-wrapper{
+        text-align: initial;
+        .brand-logo{
+            position: relative;
+        }
+    }
 }

@@ -1,0 +1,259 @@
+<div>
+  <div class="form-group">
+    <!-- <label for="image">Завантажте чек</label> -->
+    <!-- <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>  -->
+    <div class="file-field input-field">
+      <div class="btn file-btn">
+        <i class="material-icons">barcode_reader</i>
+        <i class="material-icons">receipt</i>
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          accept="image/*"
+          required
+        />
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" />
+      </div>
+    </div>
+    <div class="wrapper-view">
+      <img
+        id="blah"
+        class="your-img"
+        *ngIf="imageSrc"
+        [src]="imageSrc"
+        alt="your image"
+      />
+      <div class="wrapper-warn">
+        <div class="warn-text">
+          <span
+            >Сканер чеків, це лише бета. І він може не коректно відображати
+            поля. Тому рекомендуємо вручну вводити дані. Пам’ятай Сканер не
+            вирішить всіх Ваших проблем!!!</span
+          >
+        </div>
+        <a
+          class="btn-large waves-effect light-blue darken-4 btn"
+          (click)="processReceipt()"
+          >Обробити чек</a
+        >
+      </div>
+    </div>
+    <!-- <input type="file" id="image" class="file-btn waves-effect waves-light" (change)="onFileChange($event)" accept="image/*" required/> -->
+  </div>
+  <!-- <ng-template *ngIf="loader.progres !== 1"> -->
+  <div class="bg_absolute" *ngIf="!loader.isReady">
+    <div class="fixed_pos">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <div class="status-text">{{ loader.status }}</div>
+      <div class="progres-text">{{ loader.progres | percent }}</div>
+    </div>
+  </div>
+  <!-- </ng-template> -->
+  <!-- <button type="button" (click)="processReceipt()"> Обробити чек </button> -->
+
+  <div *ngIf="parsedData">
+    <h3 class="title">ІНФОРМАЦІЯ З ЧЕКУ</h3>
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="input-field col s12">
+            <input
+              id="nameStore"
+              type="text"
+              class="form-control"
+              placeholder="Назва"
+              aria-required="true"
+              [(ngModel)]="parsedData.storeName"
+              (ngModelChange)="parseAddres()"
+              [ngbTypeahead]="searchStore"
+            />
+            <label for="nameStore">Назва магазину</label>
+          </div>
+          <div class="input-field col s12">
+            <input
+              id="nameStore"
+              type="text"
+              class="form-control"
+              placeholder="  "
+              aria-required="true"
+              [(ngModel)]="parsedData.storeAdress"
+            />
+            <label for="nameStore">Адреса магазину</label>
+          </div>
+          <div class="col s12 flex block-select-date">
+            <a
+              class="waves-effect light-blue darken-4 btn select-date"
+              (click)="open(content)"
+            >
+              <i class="small material-icons">date_range</i>
+              Вказати дату</a
+            >
+            <input
+              id="selectDate"
+              type="text"
+              [value]="
+                modelDate?.year
+                  ? modelDate?.day +
+                    '/' +
+                    modelDate?.month +
+                    '/' +
+                    modelDate?.year
+                  : (currentDate | date: 'dd/MM/yy')
+              "
+              class="validate input-date"
+            />
+          </div>
+          <ng-template #content let-modal>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">
+                Виберіть дату покупки
+              </h4>
+              <button
+                type="button"
+                class="btn-close"
+                aria-label="Close"
+                (click)="modal.dismiss('Cross click')"
+              ></button>
+            </div>
+            <div class="wrapper">
+              <ngb-datepicker
+                #dp
+                [(ngModel)]="modelDate"
+                (navigate)="date = $event.next"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="modal.close('Save click')"
+              >
+                Зберегти
+              </button>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <h3 class="title">Товари:</h3>
+      <div class="row" *ngFor="let good of parsedData.items; index as index">
+        <div class="col s12 m12">
+          <div class="card">
+            <div class="flex">
+              <div class="input-field col s10 l3">
+                <input
+                  id="{{ 'nameGood' + index }}"
+                  type="text"
+                  class="form-control validate"
+                  [(ngModel)]="good.name"
+                  (ngModelChange)="parseCategoryGood(good.name, index)"
+                  [ngbTypeahead]="searchGood"
+                />
+                <label for="{{ 'nameGood' + index }}">Назва товару</label>
+              </div>
+              <div class="input-field col s10 l3">
+                <input
+                  id="{{ 'quantityGood' + index }}"
+                  type="number"
+                  class="form-control validate"
+                  [(ngModel)]="good.quantity"
+                />
+                <label for="{{ 'quantityGood' + index }}">Кількість</label>
+              </div>
+              <div class="input-field col s10 l3">
+                <input
+                  id="{{ 'category' + index }}"
+                  type="text"
+                  class="form-control validate"
+                  [(ngModel)]="good.category"
+                  [ngbTypeahead]="searchCategory"
+                />
+                <label for="{{ 'category' + index }}">Категорія</label>
+              </div>
+              <div class="price-block col s12 l1">
+                <div class="input-field col s6 l3">
+                  <input
+                    id="{{ 'price' + index }}"
+                    type="number"
+                    class="form-control validate"
+                    [(ngModel)]="good.price"
+                  />
+                  <label for="{{ 'price' + index }}">Ціна</label>
+                </div>
+                <span
+                  >({{
+                    good.price && good.quantity
+                      ? +good.price / +good.quantity
+                      : "0"
+                  }})</span
+                >
+              </div>
+              <div class="flex btn-block col s12 l2">
+                <a
+                  class="waves-effect light-blue darken-4 btn"
+                  (click)="refresh(index)"
+                >
+                  <i class="small material-icons">loop</i></a
+                >
+                <a
+                  class="waves-effect light-blue darken-4 btn"
+                  (click)="delete(index)"
+                >
+                  <i class="small material-icons">clear</i></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 flex">
+        <a
+          class="btn-floating btn-large waves-effect light-blue darken-4 btn"
+          (click)="addNewGood()"
+          ><i class="material-icons">add</i></a
+        >
+      </div>
+      <div class="row t-a-block">
+        <div class="col s12">
+          <div class="card">
+            <div class="totalAmound">
+              <p>ЗАГАЛЬНА СУМА</p>
+              <p>{{ getTotalAmound() }} грн</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 flex">
+      <a
+        class="btn-large waves-effect light-blue darken-4 btn"
+        (click)="sentReceipt()"
+        >Добавити чек</a
+      >
+      <a
+        class="btn-large waves-effect light-blue darken-4 btn"
+        (click)="toggleLog()"
+        >Показати логи</a
+      >
+    </div>
+    <div *ngIf="isTogleLog">
+      <p *ngFor="let line of log">{{ line }}</p>
+    </div>
+  </div>
+</div>

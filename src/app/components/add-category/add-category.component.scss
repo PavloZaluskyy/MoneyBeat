@@ -1,0 +1,13 @@
+.toast{
+    background-color: #fff!important;
+    text-align: center!important;
+}
+.fl{ 
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    .form{
+        flex: 1;
+        margin-right: 1rem;
+    }
+}
