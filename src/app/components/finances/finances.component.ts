@@ -94,6 +94,9 @@ export class FinancesComponent implements OnInit {
 
   searchDate(ev: any) {
     if (this.dateFrom && this.dateTo) {
+		if(!this.receipts.length){
+			this.getReceiptFromLocalStore()
+		}
       let arr = this.receipts.filter((group) => {
         return (
           this.formatDate(group.date) >
