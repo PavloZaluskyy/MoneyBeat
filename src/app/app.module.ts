@@ -18,7 +18,14 @@ import { AddTicketComponent } from './components/add-ticket/add-ticket.component
 import { AddCategoryComponent } from './components/add-category/add-category.component';
 import { WriteNewTicketComponent } from './components/write-new-ticket/write-new-ticket.component';
 import { ScanTextNewTicketComponent } from './components/scan-text-new-ticket/scan-text-new-ticket.component';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
+// import { ChartData, ChartEvent, ChartType } from 'chart.js';
+// import { ChartsModule } from 'ng2-charts';
+// import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
+// import 'chartjs-plugin-labels';
+
+import { GoogleChartsModule } from 'angular-google-charts';
 
 // import { environments } from '../environments/environments';
 @NgModule({
@@ -43,7 +50,10 @@ import { ScanTextNewTicketComponent } from './components/scan-text-new-ticket/sc
     NgbDatepickerModule,
     JsonPipe,
     NgbToastModule,
-    NgbTypeaheadModule
+    NgbTypeaheadModule,
+    NgbTooltipModule,
+    // BaseChartDirective,
+    GoogleChartsModule
   
     // CalendarModule.forRoot({
     //   provide: DateAdapter,
@@ -53,7 +63,7 @@ import { ScanTextNewTicketComponent } from './components/scan-text-new-ticket/sc
 
   ],
   providers: [
-    
+    // [ provideCharts ( withDefaultRegisterables ( ) ) ]
   ],
   bootstrap: [AppComponent]
 })

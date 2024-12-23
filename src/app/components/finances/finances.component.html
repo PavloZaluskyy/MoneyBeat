@@ -1,22 +1,119 @@
 <div class="wrapper">
     <div class="title"> ФІНАНСИ</div>
 
-    <div class="diapazone-date" (click)="open(content)">
-        <p>з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year : currentDate | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month + '/' + this.dateTo.year : currentDate | date: 'dd/MM/yy' }}</p>
-        <i class="small material-icons" >date_range</i>
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card diapazone-date">
+                <p>з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year :
+                    currentDate | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month + '/'
+                    + this.dateTo.year : currentDate | date: 'dd/MM/yy' }}</p>
+                <i class="small material-icons" (click)="open(content)">date_range</i>
+                <i class="small material-icons" (click)="reloadCalendar()">replay</i>
+            </div>
+        </div>
     </div>
     <ng-template #content let-modal>
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Виберіть період</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            <button type="button" class="btn-close" aria-label="Close" #closebutton
+                (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div>
             <app-calendar (onSelectedDate)="getSelectDate($event)"></app-calendar>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Зберегти</button>
+            <button type="button" class="btn btn-outline-secondary" id="closeModal"
+                (click)="searchDate(modal)">Зберегти</button>
         </div>
     </ng-template>
 
-    <button routerLink="new-ticket">+</button>
+    <div class="current-cash">
+        <p class="title-cash">Орієнтовані кошти на вашому рахунку</p>
+        <p>{{50000 | currency:'₴ ':'symbol':'4.2-3':'en'}}</p>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card spending-earning">
+                <div class="spending">
+                    <p class="title-cash">Витрати</p>
+                    <p>{{totalSpending() + ' ₴ '}}</p>
+                </div>
+                <div class="earnings">
+                    <p class="title-cash">Натходження</p>
+                    <p ngbTooltip="У вас надто великі витрати, які перевищують надходження"
+                        [triggers]="isTogleTooltips ? 'hover' : 'none' " tooltipClass="togle-tooltip">{{2000 + '₴ '}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card">
+                <google-chart #chart [type]="type" [data]="DateCategoryGoogle" [options]="options" [width]="width"
+                    [height]="height">
+                </google-chart>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card chips-categories-block">
+                <div class="chip"
+                    [ngStyle]="{'backgroundColor': category.color, 'color': getContrastYIQ(category.color)}"
+                    *ngFor="let category of categiriesDate">
+                    {{category.name}} - {{category.value}} грн.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="receipts.length">
+        <div class="wrapper" *ngIf="receipts.length > 5 ? true : false">
+            <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <div class="flex fcol">
+                            <div class="about-store m-l-r-2rem">
+                                <h5>{{receipt.nameStore}}</h5>
+                                <span>{{receipt.adressStore}}</span>
+                            </div>
+                            <div class="flex">
+                                <div class="price m-l-r-2rem">{{receipt.totalAmaund | currency:'₴
+                                    ':'symbol':'2.2-3':'en'}}</div>
+                                <div class="date m-l-r-2rem">{{receipt.date}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="togleShowAllReceipts()">{{!isShowReceipts
+                ? 'Показати всі' : 'Сховати'}}</a>
+        </div>
+        <div class="wrapper" *ngIf="receipts.length <= 5 ? true : false">
+            <div class="row margin-zero" *ngFor="let receipt of receipts">
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <div class="flex fcol">
+                            <div class="about-store m-l-r-2rem">
+                                <h5>{{receipt.nameStore}}</h5>
+                                <span>{{receipt.adressStore}}</span>
+                            </div>
+                            <div class="flex">
+                                <div class="price m-l-r-2rem">{{receipt.totalAmaund | currency:'₴
+                                    ':'symbol':'2.2-3':'en'}}</div>
+                                <div class="date m-l-r-2rem">{{receipt.date}}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="togleShowAllReceipts()">{{!isShowReceipts
+                ? 'Показати всі' : 'Сховати'}}</a>
+        </div>
+    </div>
+    <div *ngIf="!receipts.length">
+        <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
+    </div>
 </div>

@@ -1,34 +1,150 @@
-.wrapper{
+.wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-self: center;
-    .title{
+
+    .title {
         margin-top: 1.5rem;
         text-align: center;
         font-size: 2rem;
         color: #1f3a6d;
         font-weight: bold;
     }
-    .diapazone-date{
+
+    .diapazone-date {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         align-self: center;
-        border: 3px solid #ffd700;
+        cursor: pointer;
         padding: 0.5rem 2rem;
 
-        p{
-            font-size: 1.5;
+        p {
+            font-size: 1.1rem;
             color: #1f3a6d;
             font-weight: bold;
             align-content: center;
+            margin-top: 7px;
+            margin-bottom: 7px;
         }
 
-        i{
+        i {
             margin-left: 1rem;
             color: #1f3a6d;
             cursor: pointer;
+            margin-top: 7px;
+            margin-bottom: 7px;
         }
+    }
+
+    .current-cash {
+        font-size: 2rem;
+        text-align: center;
+        margin: 0.5rem auto;
+        color: #1f3a6d;
+        font-weight: 500;
+
+        .title-cash {
+            font-size: 1rem;
+            color: #a9a9a9;
+            margin-bottom: 0rem;
+        }
+    }
+
+    .spending-earning {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        padding: 1rem;
+
+        .earnings {
+            margin-left: 1.5rem;
+
+            .title-cash {
+                font-size: 1rem;
+                color: #a9a9a9;
+                margin-bottom: 0rem;
+            }
+
+            p {
+                font-size: 1.8rem;
+                color: #1f3a6d;
+                font-weight: 500;
+            }
+
+        }
+
+        .spending {
+            padding-right: 1.5rem;
+            border-right: 2px solid #a9a9a9;
+
+            .title-cash {
+                font-size: 1rem;
+                color: #a9a9a9;
+                margin-bottom: 0rem;
+            }
+
+            p {
+                font-size: 1.8rem;
+                color: #1f3a6d;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .chips-categories-block {
+        align-items: flex-start;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+
+}
+
+.margin-zero {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem;
+
+    .about-store {
+        width: 100%;
+
+        h5 {
+            font-size: 1.5rem;
+            color: #1f3a6d;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        span {
+            font-size: 1rem;
+            color: #a9a9a9;
+            font-weight: 500;
+
+        }
+    }
+
+    .flex .price {
+        font-size: 1.5rem;
+        color: #1f3a6d;
+        font-weight: bold;
+    }
+
+    .flex .date {
+        text-align: center;
+        font-size: 1rem;
+        color: #a9a9a9;
+        font-style: italic;
     }
 }
