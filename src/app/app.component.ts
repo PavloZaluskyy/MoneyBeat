@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CategoryService } from './services/category.service';
+import { ReceiptService } from './services/receipt.service';
 
 
 @Component({
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private _categoryService: CategoryService,
+      private _receiptService: ReceiptService
+  ){}
+  ngOnInit(): void {
+    if(!this._receiptService.getAllReceipts()) {
+      const categories = this._categoryService.getAllCategories();
+      this._categoryService.setCategories(categories)
+    }
+  }
 }

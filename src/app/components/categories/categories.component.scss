@@ -1,0 +1,140 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: center;
+
+    .title {
+        margin-top: 1.5rem;
+        text-align: center;
+        font-size: 2rem;
+        color: #1f3a6d;
+        font-weight: bold;
+    }
+
+    .diapazone-date {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-self: center;
+        cursor: pointer;
+        padding: 0.5rem 2rem;
+
+        p {
+            font-size: 1.1rem;
+            color: #1f3a6d;
+            font-weight: bold;
+            align-content: center;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+
+        i {
+            margin-left: 1rem;
+            color: #1f3a6d;
+            cursor: pointer;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+    }
+
+    .select-category {
+        width: 100%;
+        padding: 1rem;
+        padding-top: 2rem;
+    }
+
+    .chips-categories-block {
+        align-items: flex-start;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+}
+
+
+.margin-zero {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 1rem;
+
+    .about-store {
+        width: 100%;
+
+        h5 {
+            font-size: 1.5rem;
+            color: #1f3a6d;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        span {
+            font-size: 1rem;
+            color: #a9a9a9;
+            font-weight: 500;
+
+        }
+    }
+
+    .flex .price {
+        font-size: 1.5rem;
+        color: #1f3a6d;
+        font-weight: bold;
+    }
+
+    .flex .date {
+        text-align: center;
+        font-size: 1rem;
+        color: #a9a9a9;
+        font-style: italic;
+    }
+
+}
+
+.margin-btn-1rem {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+
+    i {
+        margin-left: .5rem;
+
+    }
+}
+
+.bg_absolute {
+    position: absolute;
+    width: 100vw;
+    height: 300vh;
+    left: 0;
+    top: 56px;
+    z-index: 9;
+    background-color: #fff;
+
+    .fixed_pos {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .status-text,
+        .progres-text {
+            margin: 1rem auto;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+    }
+}

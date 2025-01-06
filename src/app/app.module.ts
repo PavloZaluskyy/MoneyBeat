@@ -26,7 +26,13 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 // import 'chartjs-plugin-labels';
 
 import { GoogleChartsModule } from 'angular-google-charts';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
+
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -38,6 +44,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     AddCategoryComponent,
     WriteNewTicketComponent,
     ScanTextNewTicketComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,10 @@ import { GoogleChartsModule } from 'angular-google-charts';
     NgbTypeaheadModule,
     NgbTooltipModule,
     // BaseChartDirective,
-    GoogleChartsModule
+    GoogleChartsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule
   
     // CalendarModule.forRoot({
     //   provide: DateAdapter,
@@ -64,6 +74,8 @@ import { GoogleChartsModule } from 'angular-google-charts';
   ],
   providers: [
     // [ provideCharts ( withDefaultRegisterables ( ) ) ]
+  
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

@@ -62,7 +62,7 @@
             <div class="card chips-categories-block">
                 <div class="chip"
                     [ngStyle]="{'backgroundColor': category.color, 'color': getContrastYIQ(category.color)}"
-                    *ngFor="let category of categiriesDate">
+                    *ngFor="let category of categiriesDate" [routerLink]="['/category', category.name]">
                     {{category.name}} - {{category.value}} грн.
                 </div>
             </div>
