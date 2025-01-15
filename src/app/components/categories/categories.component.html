@@ -47,9 +47,7 @@
                         <div class="circle"></div>
                     </div>
                 </div>
-            </div>
-            <!-- <div class="status-text">{{ loader.status }}</div>
-          <div class="progres-text">{{ loader.progres | percent }}</div> -->
+            </div> 
         </div>
     </div>
     <div class="wrapper" *ngIf="isShowDate">
@@ -72,9 +70,9 @@
                 </div>
             </div>
         </div>
-
-        <div *ngIf="viewReceipt.length">
-            <div class="wrapper" *ngIf="viewReceipt.length > 5 ? true : false">
+    </div>
+    <div *ngIf="viewGoods.length && isShowDate">
+            <div class="wrapper" *ngIf="viewGoods.length > 5 ? true : false">
                 <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
                     <div class="col s12 m12 l12">
                         <div class="card">
@@ -84,14 +82,13 @@
                                     <span>{{receipt.storeName}}</span>
                                 </div>
                                 <div class="flex">
-                                    <div class="price m-l-r-2rem">{{receipt.price | currency:'₴
-                                        ':'symbol':'2.2-3':'en'}}</div>
+                                    <div class="price m-l-r-2rem">{{receipt.price | currency:'₴':'symbol':'2.2-3':'en'}}</div>
                                     <div class="date m-l-r-2rem">{{receipt.data}}</div>
                                 </div>
                                 <div class="flex">
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ПЕРЕЙТИ ДО
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ДО
                                         ЧЕКУ <i class="material-icons">receipt</i></a>
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ПЕРЕЙТИ ДО
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem margin-left-1rem">ДО
                                         СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
                                 </div>
                             </div>
@@ -102,8 +99,8 @@
                     (click)="togleShowAllReceipts()">{{!isShowReceipts
                     ? 'Показати всі' : 'Сховати'}}</a>
             </div>
-            <div class="wrapper" *ngIf="viewReceipt.length <= 5 ? true : false">
-                <div class="row margin-zero" *ngFor="let receipt of viewReceipt">
+            <div class="wrapper" *ngIf="viewGoods.length <= 5 ? true : false">
+                <div class="row margin-zero" *ngFor="let receipt of viewGoods">
                     <div class="col s12 m12 l12">
                         <div class="card">
                             <div class="flex fcol">
@@ -112,15 +109,14 @@
                                     <span>{{receipt.storeName}} </span>
                                 </div>
                                 <div class="flex">
-                                    <div class="price m-l-r-2rem">{{receipt.price | currency:'₴
-                                        ':'symbol':'2.2-3':'en'}}</div>
+                                    <div class="price m-l-r-2rem">{{receipt.price | currency:'₴':'symbol':'2.2-3':'en'}}</div>
                                     <div class="date m-l-r-2rem">{{receipt.data}}</div>
                                 </div>
                                 <div class="flex">
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ПЕРЕЙТИ ДО
-                                        ЧЕКУ</a>
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ПЕРЕЙТИ ДО
-                                        СТАТИСТИКИ</a>
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ДО
+                                        ЧЕКУ <i class="material-icons">receipt</i></a>
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ДО
+                                        СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
                                 </div>
 
                             </div>
@@ -132,24 +128,22 @@
                     ? 'Показати всі' : 'Сховати'}}</a>
             </div>
         </div>
-        <div *ngIf="!viewReceipt.length">
+        <div *ngIf="!viewGoods.length">
             <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
         </div>
-
-
-    </div>
-    <ng-template #content let-modal>
-        <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Виберіть період</h4>
-            <button type="button" class="btn-close" aria-label="Close" #closebutton
-                (click)="modal.dismiss('Cross click')"></button>
-        </div>
-        <div>
-            <app-calendar (onSelectedDate)="getSelectDate($event)"></app-calendar>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" id="closeModal"
-                (click)="modal.close('save')">Зберегти</button>
-        </div>
-    </ng-template>
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Виберіть період</h4>
+        <button type="button" class="btn-close" aria-label="Close" #closebutton
+            (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div>
+        <app-calendar (onSelectedDate)="getSelectDate($event)"></app-calendar>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" id="closeModal"
+            (click)="modal.close('save')">Зберегти</button>
+    </div>
+</ng-template>

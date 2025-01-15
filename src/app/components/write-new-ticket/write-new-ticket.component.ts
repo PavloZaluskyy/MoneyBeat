@@ -212,7 +212,7 @@ export class WriteNewTicketComponent implements OnInit {
           this.modelDate?.month +
           '.' +
           this.modelDate?.year
-        : this.currentDate,
+        : this.currentDate.getDate() + '.' + this.currentDate.getMonth() + 1 + '.' + this.currentDate.getFullYear(),
       goods: this.goods,
       totalAmaund: this.getTotalAmound(),
     };

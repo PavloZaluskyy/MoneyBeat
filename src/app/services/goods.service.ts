@@ -57,7 +57,7 @@ export class GoodsService {
       })
 
       this.setGood(good)
-      console.log(good);
+      // .console.log(good);
       
     }
   }
