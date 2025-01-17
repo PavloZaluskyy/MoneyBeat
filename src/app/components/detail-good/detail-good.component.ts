@@ -42,7 +42,6 @@ export class DetailGoodComponent implements OnInit {
     if(this.receiptsAll?.length) {
       this.selectReceipt = this.receiptsAll?.filter((item: Receipt) => item.id == Number(this.route.snapshot.paramMap.get('id')) ? item : null )[0]
     }
-    console.log(this.selectReceipt); 
     this.formatDataForChart()
   }
 
