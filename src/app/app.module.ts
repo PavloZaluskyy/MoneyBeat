@@ -33,6 +33,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { DetailGoodComponent } from './components/detail-good/detail-good.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     WriteNewTicketComponent,
     ScanTextNewTicketComponent,
     CategoriesComponent,
+    DetailGoodComponent,
   ],
   imports: [
     BrowserModule,

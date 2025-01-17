@@ -47,6 +47,7 @@ export class CategoriesComponent implements OnInit {
     name: string;
     price: number;
     quantity: number;
+    id: number;
     storeName: string;
   }[] = [];
 
@@ -185,6 +186,8 @@ export class CategoriesComponent implements OnInit {
       
     })
     this.viewGoods = arr2;
+    console.log(arr2);
+    
   }
 
 

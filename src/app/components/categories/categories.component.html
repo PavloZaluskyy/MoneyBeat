@@ -64,7 +64,7 @@
             <div class="col s12 m12 l12">
                 <div class="card chips-categories-block">
                     <div class="chip" [ngStyle]="{'backgroundColor': good.color, 'color': getContrastYIQ(good.color)}"
-                        *ngFor="let good of goodsDate" [routerLink]="['/category', good.name]">
+                        *ngFor="let good of goodsDate">
                         {{good.name}} ({{good.quanity}}) - {{good.value}} грн.
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                                     <div class="date m-l-r-2rem">{{receipt.data}}</div>
                                 </div>
                                 <div class="flex">
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ДО
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem" [routerLink]="['/detail', receipt.id]">ДО
                                         ЧЕКУ <i class="material-icons">receipt</i></a>
                                     <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem margin-left-1rem">ДО
                                         СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
@@ -113,7 +113,7 @@
                                     <div class="date m-l-r-2rem">{{receipt.data}}</div>
                                 </div>
                                 <div class="flex">
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ДО
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem" [routerLink]="['/detail', receipt.id]">ДО
                                         ЧЕКУ <i class="material-icons">receipt</i></a>
                                     <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ДО
                                         СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
