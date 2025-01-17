@@ -71,7 +71,7 @@
     <div *ngIf="receipts.length">
         <div class="wrapper" *ngIf="receipts.length > 5 ? true : false">
             <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
-                <div class="col s12 m12 l12">
+                <div class="col s12 m12 l12" [routerLink]="['/detail', receipt.id]">
                     <div class="card">
                         <div class="flex fcol">
                             <div class="about-store m-l-r-2rem">
@@ -92,7 +92,7 @@
         </div>
         <div class="wrapper" *ngIf="receipts.length <= 5 ? true : false">
             <div class="row margin-zero" *ngFor="let receipt of receipts">
-                <div class="col s12 m12 l12">
+                <div class="col s12 m12 l12" [routerLink]="['/detail', receipt.id]">
                     <div class="card">
                         <div class="flex fcol">
                             <div class="about-store m-l-r-2rem">
