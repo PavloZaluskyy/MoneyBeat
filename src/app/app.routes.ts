@@ -5,6 +5,7 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
 import { WriteNewTicketComponent } from './components/write-new-ticket/write-new-ticket.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { DetailGoodComponent } from './components/detail-good/detail-good.component';
+import { GoodStatisticComponent } from './components/good-statistic/good-statistic.component';
 
 export const routes: Routes = [
     // {path: "finances", component: FinancesComponent}
@@ -14,4 +15,6 @@ export const routes: Routes = [
     {path: "category/:name", component: CategoriesComponent},
     {path: "detail/:id", component: DetailGoodComponent},
     {path: "new-ticket/write-ticket", component: WriteNewTicketComponent},
+    {path: "good/:name", component: GoodStatisticComponent},
+
 ];

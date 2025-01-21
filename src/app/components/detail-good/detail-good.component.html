@@ -12,7 +12,7 @@
     <!-- <div class="wrapper"> -->
         <div class="row margin-zero flex-column">
             <div class="col s12 m12 l12" *ngFor="let good of selectReceipt?.goods">
-                <div class="card">
+                <div class="card" [routerLink]="['/good', good.name]">
                     <div class="goods-ls">
                         <h4 class="name-good">{{good.name}} <span class="quanity">({{good.quantity}})</span></h4>
                         <h4 class="name-good">{{good.category}}</h4>

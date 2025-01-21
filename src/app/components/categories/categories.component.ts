@@ -185,9 +185,7 @@ export class CategoriesComponent implements OnInit {
       }
       
     })
-    this.viewGoods = arr2;
-    console.log(arr2);
-    
+    this.viewGoods = arr2;    
   }
 
 

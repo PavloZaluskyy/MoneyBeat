@@ -34,6 +34,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DetailGoodComponent } from './components/detail-good/detail-good.component';
+import { GoodStatisticComponent } from './components/good-statistic/good-statistic.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { DetailGoodComponent } from './components/detail-good/detail-good.compon
     ScanTextNewTicketComponent,
     CategoriesComponent,
     DetailGoodComponent,
+    GoodStatisticComponent,
   ],
   imports: [
     BrowserModule,

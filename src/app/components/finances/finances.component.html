@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="togleShowAllReceipts()">{{!isShowReceipts
+            <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="receipts.length >= 5" (click)="togleShowAllReceipts()">{{!isShowReceipts
                 ? 'Показати всі' : 'Сховати'}}</a>
         </div>
     </div>
