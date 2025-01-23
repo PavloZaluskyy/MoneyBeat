@@ -30,6 +30,7 @@ export class FinancesComponent implements OnInit {
   isTogleTooltips = true;
   private modalService = inject(NgbModal);
   currentDate = new Date();
+  currentDateFrom: any;
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
   closeResult = '';
@@ -54,10 +55,15 @@ export class FinancesComponent implements OnInit {
   receipts: Receipt[] = [];
   constructor(private _localStorage: LocalStorageService) {}
   ngOnInit() {
+    this.currentDateFrom = this.firstDateOfMonth();
     this.getReceiptFromLocalStore();
     this.categiriesDate = this.getCategoriesAndTZotalAmound();
     this.convertDateForPie();
     // this.cutReceiptsArr()
+  }
+  firstDateOfMonth() {
+    let date = new Date();
+    return new Date(date.getFullYear(), date.getMonth(), 1);
   }
   cutReceiptsArr(): Receipt[] {
     if (this.receipts.length > 5 && !this.isShowReceipts) {
@@ -115,6 +121,9 @@ export class FinancesComponent implements OnInit {
     }
     ev.close('ss');
   }
+
+
+  
   getContrastYIQ(hexcolor: any) {
     var r = parseInt(hexcolor.substring(1, 3), 16);
     var g = parseInt(hexcolor.substring(3, 5), 16);

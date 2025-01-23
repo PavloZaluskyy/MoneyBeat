@@ -1,1 +1,58 @@
-<p>top-store works!</p>
+<div class="wrapper">
+    <div class="title"> ТОП МАГАЗИНІВ</div>
+
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card diapazone-date">
+                <p>з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year :
+                    currentDateFrom | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month +
+                    '/'
+                    + this.dateTo.year : currentDate | date: 'dd/MM/yy' }}</p>
+                <i class="small material-icons" (click)="open(content)">date_range</i>
+                <i class="small material-icons" (click)="reloadCalendar()">replay</i>
+            </div>
+        </div>
+    </div>
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Виберіть період</h4>
+            <button type="button" class="btn-close" aria-label="Close" #closebutton
+                (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div>
+            <app-calendar (onSelectedDate)="getSelectDate($event)"></app-calendar>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" id="closeModal"
+                (click)="searchDate(modal)">Зберегти</button>
+        </div>
+    </ng-template>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card">
+                <google-chart #chart [type]="type" [data]="DateCategoryGoogle" [options]="options" [width]="width"
+                    [height]="height">
+                </google-chart>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-zero" *ngFor="let receipt of viewReceipt; index as i">
+        <div class="col s12 m12 l12" [routerLink]="['/detail', receipt.id]">
+            <div class="card">
+                <div class="flex fcol">
+                    <div class="about-store m-l-r-2rem">
+                        <h5>{{i+1}} {{receipt.nameStore}}</h5>
+                        <span>{{receipt.adressStore}}</span>
+                    </div>
+                    <div class="flex">
+                        <div class="price m-l-r-2rem">{{receipt.totalAmaund | currency:'₴
+                            ':'symbol':'2.2-3':'en'}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!viewReceipt.length">
+                <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
+    </div>
+</div>

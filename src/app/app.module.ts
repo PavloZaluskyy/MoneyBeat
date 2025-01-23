@@ -35,6 +35,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DetailGoodComponent } from './components/detail-good/detail-good.component';
 import { GoodStatisticComponent } from './components/good-statistic/good-statistic.component';
+import { TopStoreComponent } from './components/top-store/top-store.component';
+import { StoreComponent } from './components/store/store.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { GoodStatisticComponent } from './components/good-statistic/good-statist
     CategoriesComponent,
     DetailGoodComponent,
     GoodStatisticComponent,
+    TopStoreComponent,
+    StoreComponent,
   ],
   imports: [
     BrowserModule,

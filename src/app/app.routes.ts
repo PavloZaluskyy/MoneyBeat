@@ -6,6 +6,7 @@ import { WriteNewTicketComponent } from './components/write-new-ticket/write-new
 import { CategoriesComponent } from './components/categories/categories.component';
 import { DetailGoodComponent } from './components/detail-good/detail-good.component';
 import { GoodStatisticComponent } from './components/good-statistic/good-statistic.component';
+import { TopStoreComponent } from './components/top-store/top-store.component';
 
 export const routes: Routes = [
     // {path: "finances", component: FinancesComponent}
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path: "detail/:id", component: DetailGoodComponent},
     {path: "new-ticket/write-ticket", component: WriteNewTicketComponent},
     {path: "good/:name", component: GoodStatisticComponent},
+    {path: "top-store", component: TopStoreComponent},
 
 ];

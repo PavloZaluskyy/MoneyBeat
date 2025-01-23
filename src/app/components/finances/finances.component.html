@@ -5,7 +5,8 @@
         <div class="col s12 m7">
             <div class="card diapazone-date">
                 <p>з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year :
-                    currentDate | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month + '/'
+                    currentDateFrom | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month +
+                    '/'
                     + this.dateTo.year : currentDate | date: 'dd/MM/yy' }}</p>
                 <i class="small material-icons" (click)="open(content)">date_range</i>
                 <i class="small material-icons" (click)="reloadCalendar()">replay</i>
