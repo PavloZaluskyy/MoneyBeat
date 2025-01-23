@@ -1,1 +1,116 @@
-<p>store works!</p>
+<div class="wrapper">
+    <div class="title"> ВИТРАТИ ПО КАТЕГОРІЯХ</div>
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card diapazone-date">
+                <p>з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year :
+                    currentDateFrom | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month +
+                    '/'
+                    + this.dateTo.year : currentDate | date: 'dd/MM/yy' }}</p>
+                <i class="small material-icons" (click)="open(content)">date_range</i>
+                <i class="small material-icons" (click)="reloadCalendar()">replay</i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card select-category">
+                <mat-form-field>
+                    <mat-label>Виберіть Категорію</mat-label>
+                    <mat-select [(value)]="selectStore">
+                        @for (category of allStores; track category) {
+                        <mat-option value="{{category}}">{{category}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card select-category">
+                <a class="btn-large waves-effect light-blue darken-4 btn" (click)="searchDate()">Побачити товари</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg_absolute" *ngIf="isLoader">
+        <div class="fixed_pos">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div *ngIf="viewReceipts.length && isShowDate">
+        <div class="wrapper" *ngIf="viewReceipts.length > 5 ? true : false">
+            <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
+                <div class="col s12 m12 l12">
+                    <div class="card" [routerLink]="['/detail', receipt.id]">
+                        <div class="flex fcol">
+                            <div class="about-store m-l-r-2rem">
+                                <h5>{{receipt.nameStore}}</h5>
+                                <span>{{receipt.adressStore}}</span>
+                            </div>
+                            <div class="flex">
+                                <div class="price m-l-r-2rem">{{receipt.totalAmaund | currency:'₴
+                                    ':'symbol':'2.2-3':'en'}}</div>
+                                <div class="date m-l-r-2rem">{{receipt.date}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn-large waves-effect light-blue darken-4 btn"
+                (click)="togleShowAllReceipts()">{{!isShowReceipts
+                ? 'Показати всі' : 'Сховати'}}</a>
+        </div>
+        <div class="wrapper" *ngIf="viewReceipts.length <= 5 ? true : false">
+            <div class="row margin-zero" *ngFor="let receipt of viewReceipts">
+                <div class="col s12 m12 l12">
+                    <div class="card" [routerLink]="['/detail', receipt.id]">
+                        <div class="flex fcol">
+                            <div class="about-store m-l-r-2rem">
+                                <h5>{{receipt.nameStore}}</h5>
+                                <span>{{receipt.adressStore}}</span>
+                            </div>
+                            <div class="flex">
+                                <div class="price m-l-r-2rem">{{receipt.totalAmaund | currency:'₴
+                                    ':'symbol':'2.2-3':'en'}}</div>
+                                <div class="date m-l-r-2rem">{{receipt.date}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="viewReceipts.length >= 5"
+                (click)="togleShowAllReceipts()">{{!isShowReceipts
+                ? 'Показати всі' : 'Сховати'}}</a>
+        </div>
+    </div>
+    <div *ngIf="!viewReceipts.length">
+        <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Виберіть період</h4>
+        <button type="button" class="btn-close" aria-label="Close" #closebutton
+            (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div>
+        <app-calendar (onSelectedDate)="getSelectDate($event)"></app-calendar>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" id="closeModal"
+            (click)="modal.close('save')">Зберегти</button>
+    </div>
+</ng-template>
