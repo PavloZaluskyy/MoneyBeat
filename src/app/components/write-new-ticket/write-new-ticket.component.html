@@ -50,6 +50,7 @@
         >
         <input
           id="selectDate"
+          disabled
           type="text"
           [value]="
             modelDate?.year
@@ -102,35 +103,64 @@
               type="text"
               class="form-control validate"
               [(ngModel)]="good.name"
+              [class.validate]="isValidGood[index].name"
+              [class.invalidate]="!isValidGood[index].name"
               (ngModelChange)="parseCategoryGood(good.name, index)"
               [ngbTypeahead]="searchGood"
             />
             <label for="{{ 'nameGood' + index }}">Назва товару</label>
+            <span
+            class="helper-text"
+            *ngIf="!isValidGood[index].name"
+            data-error="wrong"
+            data-success="right"
+            >{{ 'Введіть назву товару' }}</span
+          >
           </div>
           <div class="input-field col s10 l3">
             <input
               id="{{ 'quantityGood' + index }}"
               type="number"
+              [class.validate]="isValidGood[index].quantity"
+              [class.invalidate]="!isValidGood[index].quantity"
               class="form-control validate"
               [(ngModel)]="good.quantity"
             />
             <label for="{{ 'quantityGood' + index }}">Кількість</label>
+            <span
+            class="helper-text"
+            *ngIf="!isValidGood[index].quantity"
+            data-error="wrong"
+            data-success="right"
+            >{{ 'Введіть кількість товару' }}</span
+          >
           </div>
           <div class="input-field col s10 l3">
             <input
               id="{{ 'category' + index }}"
               type="text"
+              [class.validate]="isValidGood[index].category"
+              [class.invalidate]="!isValidGood[index].category"
               class="form-control validate"
               [(ngModel)]="good.category"
               [ngbTypeahead]="searchCategory"
             />
             <label for="{{ 'category' + index }}">Категорія</label>
+            <span
+            class="helper-text"
+            *ngIf="!isValidGood[index].category"
+            data-error="wrong"
+            data-success="right"
+            >{{ 'Введіть категорію товару' }}</span
+          >
           </div>
           <div class="price-block col s12 l1">
             <div class="input-field col s6 l3">
               <input
                 id="{{ 'price' + index }}"
                 type="number"
+                [class.validate]="isValidGood[index].price"
+                [class.invalidate]="!isValidGood[index].price"  
                 class="form-control validate"
                 [(ngModel)]="good.price"
               />
@@ -143,6 +173,13 @@
                   : "0"
               }})</span
             >
+            <span
+            class="helper-text"
+            *ngIf="!isValidGood[index].price"
+            data-error="wrong"
+            data-success="right"
+            >{{ 'Введіть ціну товару' }}</span
+          >
           </div>
           <div class="flex btn-block col s12 l2">
             <a

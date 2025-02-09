@@ -43,7 +43,7 @@
                 <div class="earnings">
                     <p class="title-cash">Натходження</p>
                     <p ngbTooltip="У вас надто великі витрати, які перевищують надходження"
-                        [triggers]="isTogleTooltips ? 'hover' : 'none' " tooltipClass="togle-tooltip">{{2000 + '₴ '}}
+                     [disableTooltip]="isTogleTooltips" tooltipClass="togle-tooltip">{{totalEarning() + '₴ '}}
                     </p>
                 </div>
             </div>

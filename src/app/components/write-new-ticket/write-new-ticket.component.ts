@@ -44,6 +44,12 @@ export class WriteNewTicketComponent implements OnInit {
     nameStore: true,
     adressStore: true,
   };
+  isValidGood: {name: boolean; quantity: boolean; category: boolean; price: boolean}[] = [{
+    name: true,
+    quantity: true,
+    category: true,
+    price: true
+  }]
   modelStoreName: string = '';
   modelAdressStore: string = '';
   modelCategoryGood: string = '';
@@ -75,6 +81,10 @@ export class WriteNewTicketComponent implements OnInit {
   }
   addNewGood() {
     this.goods.push({ name: '', quantity: '', price: '', category: '' });
+    this.isValidGood.push({ name: true,
+      quantity: true,
+      category: true,
+      price: true})
   }
   private getDismissReason(reason: any): string {
     switch (reason) {
@@ -120,6 +130,15 @@ export class WriteNewTicketComponent implements OnInit {
     );
 
   validationForm(): boolean {
+    this.isValidForm.nameStore = true;
+    this.isValidForm.adressStore = true;
+    this.isValidGood = this.isValidGood.map(g => {
+      g.name = true;
+      g.category = true;
+      g.quantity = true;
+      g.price = true;
+      return g;
+    })
     if (!this.modelStoreName.trim()) {
       this.isValidForm.nameStore = false;
       this.messageValid = 'Введіть назву магазину!';
@@ -129,6 +148,24 @@ export class WriteNewTicketComponent implements OnInit {
       this.isValidForm.adressStore = false;
       this.messageValid = 'Введіть адресу магазину!';
       return false;
+    }
+    for(let i in this.goods){
+      if (!this.goods[i].name.trim()) {
+        this.isValidGood[i].name = false;
+        return false
+      }
+      if (!this.goods[i].quantity) {
+        this.isValidGood[i].quantity = false;
+        return false
+      }
+      if (!this.goods[i].category.trim()) {
+        this.isValidGood[i].category = false;
+        return false
+      }
+      if (!this.goods[i].price) {
+        this.isValidGood[i].price = false;
+        return false
+      }
     }
     return true;
   }
@@ -202,26 +239,31 @@ export class WriteNewTicketComponent implements OnInit {
   }
 
   sentReceipt() {
-    const newReceipt: Receipt = {
-      id: this.allReceipt.length + 1,
-      nameStore: this.modelStoreName,
-      adressStore: this.modelAdressStore,
-      date: this.modelDate?.day
-        ? this.modelDate?.day +
-          '.' +
-          this.modelDate?.month +
-          '.' +
-          this.modelDate?.year
-        : this.currentDate.getDate() + '.' + this.currentDate.getMonth() + 1 + '.' + this.currentDate.getFullYear(),
-      goods: this.goods,
-      totalAmaund: this.getTotalAmound(),
-    };
-    this.allReceipt.push(newReceipt);
-    this._receiptService.setReceipt(this.allReceipt);
-    this._goodsService.firstSetLocalGoods(this.allReceipt);
-    this.router.navigateByUrl('');
-    // } else {
-    // 	alert("Error")
-    // }
+    if (this.validationForm()) {
+      const newReceipt: Receipt = {
+        id: this.allReceipt.length + 1,
+        nameStore: this.modelStoreName,
+        adressStore: this.modelAdressStore,
+        date: this.modelDate?.day
+          ? this.modelDate?.day +
+            '.' +
+            this.modelDate?.month +
+            '.' +
+            this.modelDate?.year
+          : this.currentDate.getDate() + '.' + (this.currentDate.getMonth() + 1) + '.' + this.currentDate.getFullYear(),
+        goods: this.goods,
+        totalAmaund: this.getTotalAmound(),
+      };
+      this.allReceipt.push(newReceipt);
+      this._receiptService.setReceipt(this.allReceipt);
+      this._goodsService.firstSetLocalGoods(this.allReceipt);
+      this.router.navigateByUrl('');
+    }
+  }
+
+  deleteId(){
+   const a = this.allReceipt.filter(v => v.id !=9 && v.id !=10)
+   console.log(a);
+   this._receiptService.setReceipt(a)
   }
 }

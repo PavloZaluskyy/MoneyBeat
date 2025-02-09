@@ -16,6 +16,8 @@ import { Date } from '../../models/date';
 import { ChartType } from 'angular-google-charts';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Goods, Receipt } from '../../models/receipt';
+import { EarningsService } from '../../services/earnings.service';
+import { Earning } from '../../models/earning';
 // import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 // import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 // import { SingleDataSet, Label } from 'ng2-charts';
@@ -53,12 +55,16 @@ export class FinancesComponent implements OnInit {
 
   categiriesDate: { name: string; value: number; color: string }[] | null = [];
   receipts: Receipt[] = [];
-  constructor(private _localStorage: LocalStorageService) {}
+  allEarning: Earning[] = [];
+  constructor(private _localStorage: LocalStorageService,
+              private _earningService: EarningsService
+  ) {}
   ngOnInit() {
     this.currentDateFrom = this.firstDateOfMonth();
     this.getReceiptFromLocalStore();
     this.categiriesDate = this.getCategoriesAndTZotalAmound();
     this.convertDateForPie();
+    this.allEarning =  this._earningService.getAllEarnings();
     // this.cutReceiptsArr()
   }
   firstDateOfMonth() {
@@ -82,13 +88,25 @@ export class FinancesComponent implements OnInit {
   }
   totalSpending(): number {
     let sum: number = 0;
-    if (this.categiriesDate) {
+    if (this.categiriesDate?.length) {
       this.categiriesDate.forEach((item) => {
         sum += item.value;
       });
     }
     return sum;
   }
+
+totalEarning(): number {
+  let sum: number = 0;
+  if(this.allEarning.length){
+    this.allEarning.forEach(
+      (item: Earning) => {
+        sum += item.totalAmound;
+      });
+  }
+  return sum;
+}
+
   formatDate(input: any) {
     var datePart = input.match(/\d+/g),
       year = datePart[2].substring(2), // get only two digits
@@ -102,6 +120,10 @@ export class FinancesComponent implements OnInit {
     if (this.dateFrom && this.dateTo) {
 		if(!this.receipts.length){
 			this.getReceiptFromLocalStore()
+		}
+    if(!this.allEarning.length){
+      this.allEarning =  this._earningService.getAllEarnings();
+
 		}
       let arr = this.receipts.filter((group) => {
         return (
@@ -118,10 +140,32 @@ export class FinancesComponent implements OnInit {
       this.receipts = arr;
       this.categiriesDate = this.getCategoriesAndTZotalAmound();
       this.convertDateForPie();
+      let earningArr = this.allEarning.filter((group) => {
+        return (
+          this.formatDate(group.date) >
+            new Date(
+              `${this.dateFrom?.year}.${this.dateFrom?.month}.${this.dateFrom?.day}`
+            ) &&
+          this.formatDate(group.date) <
+            new Date(
+              `${this.dateTo?.year}.${this.dateTo?.month}.${this.dateTo?.day}`
+            )
+        );
+      })
+      this.allEarning = earningArr;
+      this.isTogleTooltips = this.checkEarningAndSpending();
+      console.log(this.isTogleTooltips);
+      
     }
     ev.close('ss');
   }
 
+  checkEarningAndSpending(): boolean{
+    if (this.totalEarning < this.totalSpending) {
+      return false;
+    }
+    return true
+  }
 
   
   getContrastYIQ(hexcolor: any) {
@@ -219,6 +263,8 @@ export class FinancesComponent implements OnInit {
     this.getReceiptFromLocalStore();
     this.categiriesDate = this.getCategoriesAndTZotalAmound();
     this.convertDateForPie();
+    this.allEarning =  this._earningService.getAllEarnings();
+
   }
 
   getSelectDate(date: any) {

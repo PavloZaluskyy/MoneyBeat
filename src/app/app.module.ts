@@ -37,6 +37,7 @@ import { DetailGoodComponent } from './components/detail-good/detail-good.compon
 import { GoodStatisticComponent } from './components/good-statistic/good-statistic.component';
 import { TopStoreComponent } from './components/top-store/top-store.component';
 import { StoreComponent } from './components/store/store.component';
+import { EarningsComponent } from './components/earnings/earnings.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { StoreComponent } from './components/store/store.component';
     GoodStatisticComponent,
     TopStoreComponent,
     StoreComponent,
+    EarningsComponent,
   ],
   imports: [
     BrowserModule,

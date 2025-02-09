@@ -8,6 +8,7 @@ import { DetailGoodComponent } from './components/detail-good/detail-good.compon
 import { GoodStatisticComponent } from './components/good-statistic/good-statistic.component';
 import { TopStoreComponent } from './components/top-store/top-store.component';
 import { StoreComponent } from './components/store/store.component';
+import { EarningsComponent } from './components/earnings/earnings.component';
 
 export const routes: Routes = [
     // {path: "finances", component: FinancesComponent}
@@ -20,4 +21,6 @@ export const routes: Routes = [
     {path: "good/:name", component: GoodStatisticComponent},
     {path: "top-store", component: TopStoreComponent},
     {path: "store/:name", component: StoreComponent},
+    {path: "earnings", component: EarningsComponent},
+
 ];
