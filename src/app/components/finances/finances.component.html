@@ -41,7 +41,7 @@
                     <p>{{totalSpending() + ' ₴ '}}</p>
                 </div>
                 <div class="earnings">
-                    <p class="title-cash">Натходження</p>
+                    <p class="title-cash" routerLink="/earnings-statistic">Натходження</p>
                     <p ngbTooltip="У вас надто великі витрати, які перевищують надходження"
                      [disableTooltip]="isTogleTooltips" tooltipClass="togle-tooltip">{{totalEarning() + '₴ '}}
                     </p>

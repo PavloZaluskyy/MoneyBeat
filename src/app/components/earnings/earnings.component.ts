@@ -40,6 +40,7 @@ export class EarningsComponent implements OnInit {
     console.log(this.isValidForm);
     if (this.validation()) {
       const earning: Earning = {
+        id: this.searchAllEarning.length + 1,
         nameEarning: this.modelEarningName,
         description: this.modelEarningDescription,
         date: this.modelDate?.day

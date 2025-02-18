@@ -38,6 +38,8 @@ import { GoodStatisticComponent } from './components/good-statistic/good-statist
 import { TopStoreComponent } from './components/top-store/top-store.component';
 import { StoreComponent } from './components/store/store.component';
 import { EarningsComponent } from './components/earnings/earnings.component';
+import { EarningStComponent } from './components/earning-st/earning-st.component';
+import { EarningDetailsComponent } from './components/earning-details/earning-details.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { EarningsComponent } from './components/earnings/earnings.component';
     TopStoreComponent,
     StoreComponent,
     EarningsComponent,
+    EarningStComponent,
+    EarningDetailsComponent,
   ],
   imports: [
     BrowserModule,
