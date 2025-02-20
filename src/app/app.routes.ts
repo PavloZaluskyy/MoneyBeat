@@ -11,6 +11,7 @@ import { StoreComponent } from './components/store/store.component';
 import { EarningsComponent } from './components/earnings/earnings.component';
 import { EarningStComponent } from './components/earning-st/earning-st.component';
 import { EarningDetailsComponent } from './components/earning-details/earning-details.component';
+import { ReportComponent } from './components/report/report.component';
 
 export const routes: Routes = [
     // {path: "finances", component: FinancesComponent}
@@ -26,5 +27,6 @@ export const routes: Routes = [
     {path: "earnings", component: EarningsComponent},
     {path: "earnings-statistic", component: EarningStComponent},
     {path: "earning-details/:id", component: EarningDetailsComponent},
+    {path: "report", component: ReportComponent},
 
 ];

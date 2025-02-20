@@ -1,0 +1,69 @@
+<div class="wrapper">
+    <div class="title"> ЗВІТИ</div>
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card diapazone-date">
+                <p>з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year :
+                    currentDateFrom | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month +
+                    '/'
+                    + this.dateTo.year : currentDate | date: 'dd/MM/yy' }}</p>
+                <i class="small material-icons" (click)="open(content)">date_range</i>
+                <i class="small material-icons" (click)="reloadCalendar()">replay</i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card select-category">
+                <a class="btn-large waves-effect light-blue darken-4 btn" (click)="searchDate()">Сформувати звіт</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg_absolute" *ngIf="isLoader">
+        <div class="fixed_pos">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <div class="wrapper" *ngIf="isShowDate">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card report-card">
+                    <h6>Витрати з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year :
+                        currentDateFrom | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month +
+                        '/'
+                        + this.dateTo.year : currentDate | date: 'dd/MM/yy' }} ({{differenceDays}} дні)</h6>
+                    <p *ngFor="let category of showReportbyReceipt"><span>{{category.name}}</span> - {{category.value}} грн.</p>
+
+                    <h6>#сумарно{{nameMonth}} - {{totalAmound}} грн</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Виберіть період</h4>
+        <button type="button" class="btn-close" aria-label="Close" #closebutton
+            (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div>
+        <app-calendar (onSelectedDate)="getSelectDate($event)"></app-calendar>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" id="closeModal"
+            (click)="modal.close('save')">Зберегти</button>
+    </div>
+</ng-template>
