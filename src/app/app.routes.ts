@@ -12,10 +12,11 @@ import { EarningsComponent } from './components/earnings/earnings.component';
 import { EarningStComponent } from './components/earning-st/earning-st.component';
 import { EarningDetailsComponent } from './components/earning-details/earning-details.component';
 import { ReportComponent } from './components/report/report.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
-    // {path: "finances", component: FinancesComponent}
-    {path: "", component: FinancesComponent},
+    {path: "finances", component: FinancesComponent},
+    {path: "", component: HomeComponent},
     {path: "new-ticket", component: AddTicketComponent},
     {path: "add-category", component: AddCategoryComponent},
     {path: "category/:name", component: CategoriesComponent},

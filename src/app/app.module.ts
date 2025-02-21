@@ -41,6 +41,7 @@ import { EarningsComponent } from './components/earnings/earnings.component';
 import { EarningStComponent } from './components/earning-st/earning-st.component';
 import { EarningDetailsComponent } from './components/earning-details/earning-details.component';
 import { ReportComponent } from './components/report/report.component';
+import { HomeComponent } from './components/home/home.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ReportComponent } from './components/report/report.component';
     EarningStComponent,
     EarningDetailsComponent,
     ReportComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
