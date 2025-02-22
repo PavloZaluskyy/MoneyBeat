@@ -1,13 +1,15 @@
 <header>
     <nav>
         <div class="nav-wrapper container">
-          <a routerLink="" class="brand-logo">$ Грошовий Ритм</a>
+          <a routerLink="" class="brand-logo"><img src="../../../assets/image/logo2.png" class="logo" alt=""></a>
           <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <a  class="sidenav-trigger settings" (click)="openEnd(content)"><i class="material-icons ">settings</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a routerLink="/finances">ФІНАНСИ</a></li>
             <li><a routerLink="/new-ticket">ДОБАВИТИ ВИТРАТИ</a></li>
             <li><a routerLink="/earnings">НАДХОДЖЕННЯ</a></li>
             <li><a routerLink="/report">ЗВІТИ</a></li>
+            <li><a><i class="material-icons">settings</i></a></li>
           </ul>
         </div>
       </nav>
@@ -17,6 +19,20 @@
         <li><a routerLink="/new-ticket">ДОБАВИТИ ВИТРАТИ</a></li>
         <li><a routerLink="/earnings">НАДХОДЖЕННЯ</a></li>
         <li><a routerLink="/report">ЗВІТИ</a></li>
-        <li><a routerLink="/top-store">Top store</a></li>
       </ul>
 </header>
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title title">НАЛАШТУВАННЯ</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+		<ul class="" >
+      <li><a routerLink="/finances">ФІНАНСИ</a></li>
+      <li><a routerLink="/new-ticket">ДОБАВИТИ ВИТРАТИ</a></li>
+      <li><a routerLink="/earnings">НАДХОДЖЕННЯ</a></li>
+      <li><a routerLink="/report">ЗВІТИ</a></li>
+      <li><a routerLink="/top-store">Top store</a></li>
+    </ul>
+	</div>
+</ng-template>
