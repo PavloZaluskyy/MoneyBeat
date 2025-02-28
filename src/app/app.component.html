@@ -1,4 +1,17 @@
-<app-header></app-header>
-<div class="container">
-    <router-outlet></router-outlet>
+<div *ngIf="!isReady">
+    <app-loader></app-loader>
+</div>
+<div *ngIf="firstStart">
+    <app-add-client></app-add-client>
+</div>
+<div *ngIf="client?.checkSign">
+    <app-check-sign-in
+    (onChange)="handleChange($event)"
+    ></app-check-sign-in>
+</div>
+<div *ngIf="isReady && !firstStart && !client?.checkSign">
+    <app-header></app-header>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
 </div>

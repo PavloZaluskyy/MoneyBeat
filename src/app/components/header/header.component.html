@@ -2,7 +2,9 @@
     <nav>
         <div class="nav-wrapper container">
           <a routerLink="" class="brand-logo"><img src="../../../assets/image/logo2.png" class="logo" alt=""></a>
-          <a data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <!-- <button ><i class="material-icons">menu</i></button> -->
+
+          <a  class="sidenav-trigger" (click)="open(contentMenu)"><i class="material-icons">menu</i></a>          
           <a  class="sidenav-trigger settings" (click)="openEnd(content)"><i class="material-icons ">settings</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a routerLink="/finances">ФІНАНСИ</a></li>
@@ -14,13 +16,28 @@
         </div>
       </nav>
     
-      <ul class="sidenav" id="mobile-demo">
+      <!-- <ul class="sidenav" id="mobile-demo">
         <li><a routerLink="/finances">ФІНАНСИ</a></li>
         <li><a routerLink="/new-ticket">ДОБАВИТИ ВИТРАТИ</a></li>
         <li><a routerLink="/earnings">НАДХОДЖЕННЯ</a></li>
         <li><a routerLink="/report">ЗВІТИ</a></li>
-      </ul>
+      </ul> -->
 </header>
+
+<ng-template #contentMenu let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title" id="offcanvas-basic-title">МЕНЮ</h4>
+	</div>
+	<div class="offcanvas-body">
+		<ul class="" id="">
+      <li><a routerLink="/finances">ФІНАНСИ</a></li>
+      <li><a routerLink="/new-ticket">ДОБАВИТИ ВИТРАТИ</a></li>
+      <li><a routerLink="/earnings">НАДХОДЖЕННЯ</a></li>
+      <li><a routerLink="/report">ЗВІТИ</a></li>
+    </ul> 
+	
+	</div>
+</ng-template>
 <ng-template #content let-offcanvas>
 	<div class="offcanvas-header">
 		<h4 class="offcanvas-title title">НАЛАШТУВАННЯ</h4>

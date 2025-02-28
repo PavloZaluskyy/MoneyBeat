@@ -13,6 +13,7 @@ import { EarningStComponent } from './components/earning-st/earning-st.component
 import { EarningDetailsComponent } from './components/earning-details/earning-details.component';
 import { ReportComponent } from './components/report/report.component';
 import { HomeComponent } from './components/home/home.component';
+import { AddClientComponent } from './components/add-client/add-client.component';
 
 export const routes: Routes = [
     {path: "finances", component: FinancesComponent},
@@ -29,5 +30,6 @@ export const routes: Routes = [
     {path: "earnings-statistic", component: EarningStComponent},
     {path: "earning-details/:id", component: EarningDetailsComponent},
     {path: "report", component: ReportComponent},
+    {path: "add-client", component: AddClientComponent},
 
 ];

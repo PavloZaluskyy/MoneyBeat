@@ -18,6 +18,8 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { Goods, Receipt } from '../../models/receipt';
 import { EarningsService } from '../../services/earnings.service';
 import { Earning } from '../../models/earning';
+import { ClientService } from '../../services/client.service';
+import { Client } from '../../models/client';
 // import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 // import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 // import { SingleDataSet, Label } from 'ng2-charts';
@@ -56,16 +58,28 @@ export class FinancesComponent implements OnInit {
   categiriesDate: { name: string; value: number; color: string }[] | null = [];
   receipts: Receipt[] = [];
   allEarning: Earning[] = [];
+  client: Client | any;
+  cash: number = 0
   constructor(private _localStorage: LocalStorageService,
-              private _earningService: EarningsService
+              private _earningService: EarningsService,
+              private _clientService: ClientService
   ) {}
   ngOnInit() {
     this.currentDateFrom = this.firstDateOfMonth();
     this.getReceiptFromLocalStore();
     this.categiriesDate = this.getCategoriesAndTZotalAmound();
+
     this.convertDateForPie();
     this.allEarning =  this._earningService.getAllEarnings();
+    this.client = this._clientService.getClient();
+    this.cash = this.getCash()
     // this.cutReceiptsArr()
+  }
+
+  getCash(): number{
+    let totalSpend = this.totalSpending();
+    let totalEar = this.totalEarning()
+    return this.client.moneyInCard - totalSpend + totalEar;
   }
   firstDateOfMonth() {
     let date = new Date();

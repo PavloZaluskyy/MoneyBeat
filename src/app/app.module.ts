@@ -42,6 +42,9 @@ import { EarningStComponent } from './components/earning-st/earning-st.component
 import { EarningDetailsComponent } from './components/earning-details/earning-details.component';
 import { ReportComponent } from './components/report/report.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { AddClientComponent } from './components/add-client/add-client.component';
+import { CheckSignInComponent } from './components/check-sign-in/check-sign-in.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -63,6 +66,9 @@ import { HomeComponent } from './components/home/home.component';
     EarningDetailsComponent,
     ReportComponent,
     HomeComponent,
+    LoaderComponent,
+    AddClientComponent,
+    CheckSignInComponent,
   ],
   imports: [
     BrowserModule,
