@@ -14,6 +14,7 @@ import { EarningDetailsComponent } from './components/earning-details/earning-de
 import { ReportComponent } from './components/report/report.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
+import { SettingClientComponent } from './components/setting-client/setting-client.component';
 
 export const routes: Routes = [
     {path: "finances", component: FinancesComponent},
@@ -31,5 +32,6 @@ export const routes: Routes = [
     {path: "earning-details/:id", component: EarningDetailsComponent},
     {path: "report", component: ReportComponent},
     {path: "add-client", component: AddClientComponent},
+    {path: "settings-client", component: SettingClientComponent},
 
 ];

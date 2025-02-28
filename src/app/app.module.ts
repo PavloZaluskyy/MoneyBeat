@@ -45,6 +45,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { CheckSignInComponent } from './components/check-sign-in/check-sign-in.component';
+import { SettingClientComponent } from './components/setting-client/setting-client.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CheckSignInComponent } from './components/check-sign-in/check-sign-in.c
     LoaderComponent,
     AddClientComponent,
     CheckSignInComponent,
+    SettingClientComponent,
   ],
   imports: [
     BrowserModule,

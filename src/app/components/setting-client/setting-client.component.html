@@ -1,0 +1,54 @@
+<div *ngIf="!checkSign">
+    <div class="wrapper-sign">
+        <div class="container">
+            <form [formGroup]="confirmCodeForm">
+                <h3 class="title">ВВедіть PIN-CODE</h3>
+                <div formArrayName="digits">
+                  <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index" #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
+                    <br><label class="helper-text" *ngIf="messages">{{messages}}</label>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="checkSign">
+    <div class="wrapper">
+        <h3 class="title">ЗАГАЛЬНІ НАЛАШТУВАННЯ</h3>
+
+        <div class="row">
+            <div class="col s12 m7">
+              <div class="card">
+                <div class="m-t-1 col s12">
+                    <input placeholder="Ваше Ім'я" [(ngModel)]="client.name" id="first_name" type="text" class="validate">
+                    <label for="first_name">Ваше Ім'я</label>
+                </div>
+                <div class="m-t-1 col s12">
+                    <input placeholder="Кошти на вашому рахунку" [(ngModel)]="client.moneyInCard" id="money" type="number" class="validate">
+                    <label for="money">Кошти на вашому рахунку</label>
+                </div>
+                <div class="m-t-1 col s12">
+                    <input placeholder="PIN-CODE" [(ngModel)]="client.pin" id="pin" [maxLength]="4" [minLength]="3" type="password" class="validate" required>
+                    <label for="pin">PIN-CODE</label>
+                </div>
+                <div class="m-t-1 col s12">
+                    <p>
+                        <label>
+                          <input type="checkbox" [(ngModel)]="client.checkSign" />
+                          <span>Запитувати PIN-CODE щоразу коли входите в додаток?</span>
+                        </label>
+                      </p>
+                </div>
+              </div>
+            </div>
+            <div class="btns-wrapper">
+           
+            <a
+            class="btn-large waves-effect light-blue darken-4 btn" [class.disabled]="!validation()"
+            (click)="save()"
+            >Зберегти <i class="material-icons">
+                save
+            </i></a>
+            </div>
+          </div>
+    </div>
+</div>
