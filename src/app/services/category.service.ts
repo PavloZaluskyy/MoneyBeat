@@ -48,7 +48,7 @@ export class CategoryService {
     return defaultCategory;
 
   }
-  setCategories(categories: string[]) {
+  setCategories(categories: Category[]) {
     if(categories.length)
       return this._localStorage.setItem("money-beat:categories", categories)
   }
