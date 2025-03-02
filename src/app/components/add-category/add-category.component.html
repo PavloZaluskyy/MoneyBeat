@@ -33,18 +33,13 @@
                         <label for="last_name">Введіть назву категорії</label>
                     </div>
                     <a (click)="handleAddCategory()" class="btn-large waves-effect light-blue darken-4 btn">Додати</a>
-                    
-                </div>
-               
+                </div>              
             </div>
             <h3 class="title">Спислк категорій:</h3>
             <div class="categories-wrapper">
                 <div class="chip" *ngFor="let category of categories">{{category.name}} <i class="close material-icons" (click)="delete(category.id)">close</i></div>
                 <p *ngIf="!categories">Немає категорій</p>
             </div>
-        </div>
-        
-        
+        </div>    
     </div>
-
 </div>
