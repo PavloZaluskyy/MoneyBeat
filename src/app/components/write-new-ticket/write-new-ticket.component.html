@@ -117,23 +117,19 @@
             >{{ 'Введіть назву товару' }}</span
           >
           </div>
-          <div class="input-field col s10 l3">
-            <input
-              id="{{ 'quantityGood' + index }}"
-              type="number"
-              [class.validate]="isValidGood[index].quantity"
-              [class.invalidate]="!isValidGood[index].quantity"
-              class="form-control validate"
-              [(ngModel)]="good.quantity"
-            />
-            <label for="{{ 'quantityGood' + index }}">Кількість</label>
-            <span
-            class="helper-text"
-            *ngIf="!isValidGood[index].quantity"
-            data-error="wrong"
-            data-success="right"
-            >{{ 'Введіть кількість товару' }}</span
-          >
+          <div class="quantity-wrapper">
+            <a
+              class="btn-small waves-effect light-blue darken-4 btn"
+              (click)="minus(index)"
+              >-</a>
+            <div class="quantity-inp">
+              <input type="number" [(ngModel)]="good.quantity" disabled  class="" id="{{ 'quantityGood' + index }}">
+              <label for="{{ 'quantityGood' + index }}">Кількість</label> 
+            </div>
+            <a
+              class="btn-small waves-effect light-blue darken-4 btn"
+              (click)="plus(index)"
+              >+</a>
           </div>
           <div class="input-field col s10 l3">
             <input
@@ -222,8 +218,4 @@
     class="btn-large waves-effect light-blue darken-4 btn"
     (click)="sentReceipt()"
     >Добавити чек</a>
-  <a
-    class="btn-large waves-effect light-blue darken-4 btn"
-    (click)="validationForm()"
-    >Test Valid</a>
 </div>

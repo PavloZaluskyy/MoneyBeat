@@ -13,19 +13,19 @@ import {
 } from 'rxjs';
 import { ReceiptService } from '../../services/receipt.service';
 import { Goods, Receipt } from '../../models/receipt';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoodsService } from '../../services/goods.service';
 import { Good } from '../../models/good';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
-  selector: 'app-write-new-ticket',
-  templateUrl: './write-new-ticket.component.html',
-  styleUrl: './write-new-ticket.component.scss',
+  selector: 'app-edit-receipt',
+  templateUrl: './edit-receipt.component.html',
+  styleUrl: './edit-receipt.component.scss'
 })
-export class WriteNewTicketComponent implements OnInit {
-  private modalService = inject(NgbModal);
+export class EditReceiptComponent  implements OnInit{
+private modalService = inject(NgbModal);
 
   allReceipt: Receipt[] = [];
   searchAllStore: { name: string; adress: string }[] = [];
@@ -34,22 +34,18 @@ export class WriteNewTicketComponent implements OnInit {
   currentDate = new Date();
   selectDate: Date | undefined;
   closeResult = '';
-  goods: Goods[] = [{ name: '', quantity: 0, price: '', category: '' }];
+  goods: Goods[] = [{ name: '', quantity: '', price: '', category: '' }];
   modelDate: NgbDateStruct | undefined;
   exemple_goods: string[] = ['Молоко', 'Масло', 'Сметана', 'Кефір'];
   date: { year: number; month: number } | undefined;
   model: any;
   messageValid: string = '';
+  selectReceipt: Receipt | any;
   isValidForm: { nameStore: boolean; adressStore: boolean } = {
     nameStore: true,
     adressStore: true,
   };
-  isValidGood: {name: boolean; quantity: boolean; category: boolean; price: boolean}[] = [{
-    name: true,
-    quantity: true,
-    category: true,
-    price: true
-  }]
+  isValidGood: {name: boolean; quantity: boolean; category: boolean; price: boolean}[] = []
   modelStoreName: string = '';
   modelAdressStore: string = '';
   modelCategoryGood: string = '';
@@ -59,6 +55,7 @@ export class WriteNewTicketComponent implements OnInit {
     private _goodsService: GoodsService,
     private _categoryService: CategoryService,
     private router: Router,
+    private activeRouter: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -66,6 +63,23 @@ export class WriteNewTicketComponent implements OnInit {
     this.searchAllStore = this._receiptService.getAllStore(this.allReceipt);
     this.searchAllGood = this._goodsService.getAllGoods();
     this.searchAllCategory = this._categoryService.getAllCategories();
+    if(this.allReceipt?.length) {
+              this.selectReceipt = this.allReceipt?.filter((item: Receipt) => item.id == Number(this.activeRouter.snapshot.paramMap.get('id')) ? item : null )[0]
+        }
+    for(let i in this.selectReceipt.goods){
+      this.isValidGood.push({name: true, category: true, quantity: true, price: true})
+    }
+    
+  }
+  minus(index: number) {
+    this.selectReceipt.goods[index].quantity--;
+    if(    this.selectReceipt.goods[index].quantity <= 1) {
+      this.selectReceipt.goods[index].quantity = 1
+    }
+
+  }
+  plus(index: number){
+    this.selectReceipt.goods[index].quantity++
   }
   open(content: TemplateRef<any>) {
     this.modalService
@@ -80,7 +94,7 @@ export class WriteNewTicketComponent implements OnInit {
       );
   }
   addNewGood() {
-    this.goods.push({ name: '', quantity: 0, price: '', category: '' });
+    this.selectReceipt.goods.push({ name: '', quantity: 1, price: '', category: '' });
     this.isValidGood.push({ name: true,
       quantity: true,
       category: true,
@@ -132,39 +146,39 @@ export class WriteNewTicketComponent implements OnInit {
   validationForm(): boolean {
     this.isValidForm.nameStore = true;
     this.isValidForm.adressStore = true;
-    this.isValidGood = this.isValidGood.map(g => {
+    // this.isValidGood= [];
+    this.isValidGood = this.isValidGood.map((g:any) => {
       g.name = true;
       g.category = true;
       g.quantity = true;
       g.price = true;
       return g;
     })
-    if (!this.modelStoreName.trim()) {
+   
+    
+    if (!this.selectReceipt.nameStore.trim()) {
       this.isValidForm.nameStore = false;
       this.messageValid = 'Введіть назву магазину!';
       return false;
     }
-    if (!this.modelAdressStore.trim()) {
+    if (!this.selectReceipt.adressStore.trim()) {
       this.isValidForm.adressStore = false;
       this.messageValid = 'Введіть адресу магазину!';
       return false;
     }
-    for(let i in this.goods){
-      if (!this.goods[i].name.trim()) {
-        this.isValidGood[i].name = false;
-        return false
+    
+    for(let i in this.selectReceipt.goods){
+      if(!this.selectReceipt.goods[i].name.trim()){
+        this.isValidGood[+i].name = false;
+        return false;
       }
-      if (!this.goods[i].quantity) {
-        this.isValidGood[i].quantity = false;
-        return false
+      if(!this.selectReceipt.goods[i].category.trim()){
+        this.isValidGood[+i].category = false;
+        return false;
       }
-      if (!this.goods[i].category.trim()) {
-        this.isValidGood[i].category = false;
-        return false
-      }
-      if (!this.goods[i].price) {
-        this.isValidGood[i].price = false;
-        return false
+      if(!this.selectReceipt.goods[i].price){
+        this.isValidGood[+i].price = false;
+        return false;
       }
     }
     return true;
@@ -202,8 +216,8 @@ export class WriteNewTicketComponent implements OnInit {
     );
 
   getTotalAmound(): number {
-    return this.goods.length
-      ? this.goods.reduce((acc, curr) => +acc + +curr.price, 0)
+    return this.selectReceipt.goods.length
+      ? this.selectReceipt.goods.reduce((acc:any, curr:any) => +acc + +curr.price, 0)
       : 0;
   }
 
@@ -226,55 +240,30 @@ export class WriteNewTicketComponent implements OnInit {
     }
   }
   refresh(index: number) {
-    this.goods[index].name = '';
-    this.goods[index].quantity = '';
-    this.goods[index].category = '';
-    this.goods[index].price = '';
+    this.selectReceipt.goods[index].name = '';
+    this.selectReceipt.goods[index].quantity = '';
+    this.selectReceipt.goods[index].category = '';
+    this.selectReceipt.goods[index].price = '';
   }
 
   delete(index: number) {
-    if (this.goods.length > 1) {
-      this.goods.splice(index, 1);
+    if (this.selectReceipt.goods.length > 1) {
+      this.selectReceipt.goods.splice(index, 1);
     }
-  }
-  minus(index: number) {
-    this.goods
-    this.goods[index].quantity = +this.goods[index].quantity - 1;
-    if(+this.goods[index].quantity <= 1) {
-      this.goods[index].quantity = 1
-    }
-
-  }
-  plus(index: number){
-    this.goods[index].quantity = +this.goods[index].quantity + 1;
   }
 
   sentReceipt() {
     if (this.validationForm()) {
-      const newReceipt: Receipt = {
-        id: this.allReceipt.length + 1,
-        nameStore: this.modelStoreName,
-        adressStore: this.modelAdressStore,
-        date: this.modelDate?.day
-          ? this.modelDate?.day +
-            '.' +
-            this.modelDate?.month +
-            '.' +
-            this.modelDate?.year
-          : this.currentDate.getDate() + '.' + (this.currentDate.getMonth() + 1) + '.' + this.currentDate.getFullYear(),
-        goods: this.goods,
-        totalAmaund: this.getTotalAmound(),
-      };
-      this.allReceipt.push(newReceipt);
-      this._receiptService.setReceipt(this.allReceipt);
-      this._goodsService.firstSetLocalGoods(this.allReceipt);
-      this.router.navigateByUrl('');
+      let arr = this.allReceipt.filter((item: Receipt) => item.id !== this.selectReceipt.id)
+      arr.push(this.selectReceipt)
+      this._receiptService.setReceipt(arr)
+      this.router.navigateByUrl('')
     }
   }
 
   deleteId(){
    const a = this.allReceipt.filter(v => v.id !=9 && v.id !=10)
-   console.log(a);
    this._receiptService.setReceipt(a)
   }
+
 }

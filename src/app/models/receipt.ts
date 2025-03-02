@@ -11,7 +11,7 @@ export interface Receipt {
 }
 export interface Goods {
     name: string;
-    quantity: string;
+    quantity: string | number;
     category: string;
     price: string
 }

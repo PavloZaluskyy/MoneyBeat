@@ -12,7 +12,7 @@ import { routes } from './app.routes';
 // import { adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FinancesComponent } from './components/finances/finances.component';
-import { NgbModule, NgbDatepickerModule, NgbToastModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDatepickerModule, NgbToastModule, NgbTypeaheadModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
 import { AddTicketComponent } from './components/add-ticket/add-ticket.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
@@ -46,6 +46,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { CheckSignInComponent } from './components/check-sign-in/check-sign-in.component';
 import { SettingClientComponent } from './components/setting-client/setting-client.component';
+import { SettingCostComponent } from './components/setting-cost/setting-cost.component';
+import { EditReceiptComponent } from './components/edit-receipt/edit-receipt.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { SettingClientComponent } from './components/setting-client/setting-clie
     AddClientComponent,
     CheckSignInComponent,
     SettingClientComponent,
+    SettingCostComponent,
+    EditReceiptComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +94,7 @@ import { SettingClientComponent } from './components/setting-client/setting-clie
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-
+    NgbAccordionModule
   
     // CalendarModule.forRoot({
     //   provide: DateAdapter,

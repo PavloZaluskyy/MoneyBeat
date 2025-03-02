@@ -119,6 +119,16 @@ ngb-datepicker {
     width: 50%;
   }
 }
+.quantity-wrapper{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .quantity-inp{
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 @media (min-width: 180px) and (max-width: 600px) {
   .flex {

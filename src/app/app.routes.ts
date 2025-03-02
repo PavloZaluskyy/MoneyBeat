@@ -15,6 +15,8 @@ import { ReportComponent } from './components/report/report.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { SettingClientComponent } from './components/setting-client/setting-client.component';
+import { SettingCostComponent } from './components/setting-cost/setting-cost.component';
+import { EditReceiptComponent } from './components/edit-receipt/edit-receipt.component';
 
 export const routes: Routes = [
     {path: "finances", component: FinancesComponent},
@@ -33,5 +35,7 @@ export const routes: Routes = [
     {path: "report", component: ReportComponent},
     {path: "add-client", component: AddClientComponent},
     {path: "settings-client", component: SettingClientComponent},
+    {path: "settings-cost", component: SettingCostComponent},
+    {path: "edit-receipt/:id", component: EditReceiptComponent},
 
 ];
