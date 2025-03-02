@@ -14,3 +14,24 @@ nav{
         }
     }
 }
+.title {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+    color: #1f3a6d;
+    font-weight: bold;
+}
+
+.flex-spece-bett{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    li{
+        margin: 1rem 0;
+        .title-menu {
+            font-size: 1rem;
+            color: #a9a9a9;
+            
+        }
+    }
+}

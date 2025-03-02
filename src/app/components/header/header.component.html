@@ -26,16 +26,19 @@
 
 <ng-template #contentMenu let-offcanvas>
 	<div class="offcanvas-header">
-		<h4 class="offcanvas-title" id="offcanvas-basic-title">МЕНЮ</h4>
+		<h4 class="offcanvas-title title" id="offcanvas-basic-title">МЕНЮ</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
 	</div>
-	<div class="offcanvas-body">
+	<div class="offcanvas-body flex-spece-bett">
 		<ul class="" id="">
-      <li><a routerLink="/finances">ФІНАНСИ</a></li>
-      <li><a routerLink="/new-ticket">ДОБАВИТИ ВИТРАТИ</a></li>
-      <li><a routerLink="/earnings">НАДХОДЖЕННЯ</a></li>
-      <li><a routerLink="/report">ЗВІТИ</a></li>
+      <li><a class="title-menu" routerLink="/finances">ФІНАНСИ</a></li>
+      <li><a class="title-menu" routerLink="/new-ticket">ДОБАВИТИ ВИТРАТИ</a></li>
+      <li><a class="title-menu" routerLink="/earnings">НАДХОДЖЕННЯ</a></li>
+      <li><a class="title-menu" routerLink="/report">ЗВІТИ</a></li>
     </ul> 
-	
+    <div class="title-menu">
+      2025 developed by <a href="https://github.com/PavloZaluskyy"  target="_blank">PavloZaluskyy</a> 
+    </div>
 	</div>
 </ng-template>
 <ng-template #content let-offcanvas>
@@ -43,13 +46,15 @@
 		<h4 class="offcanvas-title title">НАЛАШТУВАННЯ</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
 	</div>
-	<div class="offcanvas-body">
+	<div class="offcanvas-body flex-spece-bett">
 		<ul class="" >
-      <li><a routerLink="/settings-client">ЗАГАЛЬНІ НАЛАШТУВАННЯ<i class="material-icons ">lock</i></a></li>
-      <li><a routerLink="/settings-cost">НАЛАШТУВАННЯ ВИТРАТ<i class="material-icons ">lock</i></a></li>
-      <li><a routerLink="/settings-earning">НАЛАШТУВАННЯ НАДХОДЖЕННЯ <i class="material-icons ">lock</i></a></li> 
-      <li><a routerLink="/add-category">ДОБАВИТИ КАТЕГОРІЮ <i class="material-icons ">lock</i></a></li>
-      <!-- <li><a routerLink="/top-store">Top store</a></li> -->
+      <li><a class="title-menu" routerLink="/settings-client">ЗАГАЛЬНІ НАЛАШТУВАННЯ<i class="material-icons ">lock</i></a></li>
+      <li><a class="title-menu" routerLink="/settings-cost">НАЛАШТУВАННЯ ВИТРАТ<i class="material-icons ">lock</i></a></li>
+      <li><a class="title-menu" routerLink="/settings-earning">НАЛАШТУВАННЯ НАДХОДЖЕННЯ <i class="material-icons ">lock</i></a></li> 
+      <li><a class="title-menu" routerLink="/add-category">ДОБАВИТИ КАТЕГОРІЮ <i class="material-icons ">lock</i></a></li>
     </ul>
+    <div class="title-menu">
+      2025 developed by <a href="https://github.com/PavloZaluskyy"  target="_blank">PavloZaluskyy</a>
+    </div>
 	</div>
 </ng-template>
