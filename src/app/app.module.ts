@@ -48,6 +48,8 @@ import { CheckSignInComponent } from './components/check-sign-in/check-sign-in.c
 import { SettingClientComponent } from './components/setting-client/setting-client.component';
 import { SettingCostComponent } from './components/setting-cost/setting-cost.component';
 import { EditReceiptComponent } from './components/edit-receipt/edit-receipt.component';
+import { SettingEarningComponent } from './components/setting-earning/setting-earning.component';
+import { EditEarningComponent } from './components/edit-earning/edit-earning.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { EditReceiptComponent } from './components/edit-receipt/edit-receipt.com
     SettingClientComponent,
     SettingCostComponent,
     EditReceiptComponent,
+    SettingEarningComponent,
+    EditEarningComponent,
   ],
   imports: [
     BrowserModule,

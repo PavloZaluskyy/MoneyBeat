@@ -17,6 +17,8 @@ import { AddClientComponent } from './components/add-client/add-client.component
 import { SettingClientComponent } from './components/setting-client/setting-client.component';
 import { SettingCostComponent } from './components/setting-cost/setting-cost.component';
 import { EditReceiptComponent } from './components/edit-receipt/edit-receipt.component';
+import { SettingEarningComponent } from './components/setting-earning/setting-earning.component';
+import { EditEarningComponent } from './components/edit-earning/edit-earning.component';
 
 export const routes: Routes = [
     {path: "finances", component: FinancesComponent},
@@ -37,5 +39,7 @@ export const routes: Routes = [
     {path: "settings-client", component: SettingClientComponent},
     {path: "settings-cost", component: SettingCostComponent},
     {path: "edit-receipt/:id", component: EditReceiptComponent},
+    {path: "settings-earning", component: SettingEarningComponent},
+    {path: "edit-earning/:id", component: EditEarningComponent},
 
 ];

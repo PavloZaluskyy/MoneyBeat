@@ -18,7 +18,7 @@ export class SettingCostComponent implements OnInit{
   confirmCodeForm: any;
   client: Client | undefined;
   messages: string = '';
-  checkSign: boolean = true;
+  checkSign: boolean = false;
   allReceipt: Receipt[] = [];
   constructor(private _client: ClientService, private fb: FormBuilder, private router: Router, private _receiptService: ReceiptService){
       this.confirmCodeForm = this.fb.group({
