@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Client } from '../../models/client';
 import { ClientService } from '../../services/client.service';
@@ -13,6 +13,7 @@ export class AddClientComponent implements OnInit, OnDestroy {
   numOfDigits: any = 4;
   @ViewChildren('inputs') inputs: QueryList<any> | any;
   confirmCodeForm: any;
+  @Output() onChange = new EventEmitter()
 
 
   active = 1;
@@ -48,10 +49,13 @@ export class AddClientComponent implements OnInit, OnDestroy {
   isGoToManual(confirm: boolean) {
     if(confirm) {
       this.router.navigateByUrl('manual')
+      this.onChange.emit(false)
+
     } else {
       console.log('go to home');
-      
-      this.router.navigateByUrl('finances')
+      this.onChange.emit(false)
+
+      this.router.navigateByUrl('')
     }
   }
 

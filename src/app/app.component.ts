@@ -38,10 +38,16 @@ export class AppComponent implements OnInit {
     }, 2000)
   }
   handleChange(e: boolean){
-   console.log(e);
    if (!e) {
     this.client.checkSign = e;
    }
    
+  }
+  handleClientChange(e: boolean) {
+    if (!e) {
+      this.firstStart = e
+      this.client = this._clientService.getClient()
+
+     }     
   }
 }

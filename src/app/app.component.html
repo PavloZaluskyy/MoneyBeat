@@ -2,7 +2,10 @@
     <app-loader></app-loader>
 </div>
 <div *ngIf="firstStart">
-    <app-add-client></app-add-client>
+    <app-add-client
+    (onChange)="handleClientChange($event)"
+
+    ></app-add-client>
 </div>
 <div *ngIf="client?.checkSign">
     <app-check-sign-in
