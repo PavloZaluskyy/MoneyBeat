@@ -12,7 +12,7 @@ import { routes } from './app.routes';
 // import { adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FinancesComponent } from './components/finances/finances.component';
-import { NgbModule, NgbDatepickerModule, NgbToastModule, NgbTypeaheadModule, NgbAccordionModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDatepickerModule, NgbToastModule, NgbTypeaheadModule, NgbAccordionModule, NgbDropdownModule, NgbScrollSpyModule } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
 import { AddTicketComponent } from './components/add-ticket/add-ticket.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
@@ -50,6 +50,7 @@ import { SettingCostComponent } from './components/setting-cost/setting-cost.com
 import { EditReceiptComponent } from './components/edit-receipt/edit-receipt.component';
 import { SettingEarningComponent } from './components/setting-earning/setting-earning.component';
 import { EditEarningComponent } from './components/edit-earning/edit-earning.component';
+import { ManualComponent } from './components/manual/manual.component';
 // import { environments } from '../environments/environments';
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { EditEarningComponent } from './components/edit-earning/edit-earning.com
     EditReceiptComponent,
     SettingEarningComponent,
     EditEarningComponent,
+    ManualComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,7 +101,8 @@ import { EditEarningComponent } from './components/edit-earning/edit-earning.com
     MatSelectModule,
     MatFormFieldModule,
     NgbAccordionModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgbScrollSpyModule
   
     // CalendarModule.forRoot({
     //   provide: DateAdapter,

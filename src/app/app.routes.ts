@@ -19,6 +19,7 @@ import { SettingCostComponent } from './components/setting-cost/setting-cost.com
 import { EditReceiptComponent } from './components/edit-receipt/edit-receipt.component';
 import { SettingEarningComponent } from './components/setting-earning/setting-earning.component';
 import { EditEarningComponent } from './components/edit-earning/edit-earning.component';
+import { ManualComponent } from './components/manual/manual.component';
 
 export const routes: Routes = [
     {path: "finances", component: FinancesComponent},
@@ -41,5 +42,6 @@ export const routes: Routes = [
     {path: "edit-receipt/:id", component: EditReceiptComponent},
     {path: "settings-earning", component: SettingEarningComponent},
     {path: "edit-earning/:id", component: EditEarningComponent},
+    {path: "manual", component: ManualComponent},
 
 ];
