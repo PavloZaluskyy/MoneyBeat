@@ -1,0 +1,18 @@
+{
+  "routes": [
+    "/",
+    "/add-category",
+    "/add-client",
+    "/earnings",
+    "/earnings-statistic",
+    "/finances",
+    "/manual",
+    "/new-ticket",
+    "/new-ticket/write-ticket",
+    "/report",
+    "/settings-client",
+    "/settings-cost",
+    "/settings-earning",
+    "/top-store"
+  ]
+}
