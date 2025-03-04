@@ -1,19 +1,23 @@
 // @import url(../../../../styles.scss);
-nav{
-    background-color: #1f3a6d!important;
+nav {
+    background-color: #1f3a6d !important;
     font-family: Arial, Helvetica, sans-serif;
-    .nav-wrapper{
+
+    .nav-wrapper {
         text-align: initial;
-        .logo{
+
+        .logo {
             width: 6rem;
             height: 3rem;
         }
-        .settings{
+
+        .settings {
             position: absolute;
             right: 1rem;
         }
     }
 }
+
 .title {
     margin-top: 1.5rem;
     text-align: center;
@@ -22,23 +26,14 @@ nav{
     font-weight: bold;
 }
 
-// .dropdown-item{
-//     a{
-//         color: #a9a9a9;
-//         font-size: 1rem;
-//         i{
-//             height: auto!important;
-//             line-height: normal!important;
-//         }
-//     }
-// }
-
-.flex-spece-bett{
+.flex-spece-bett {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    li{
+
+    li {
         margin: 1rem 0;
+
         .title-menu {
             font-size: 1rem;
             color: #a9a9a9;

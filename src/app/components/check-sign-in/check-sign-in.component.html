@@ -3,7 +3,8 @@
         <form [formGroup]="confirmCodeForm">
             <h3 class="title">ВВедіть PIN-CODE</h3>
             <div formArrayName="digits">
-              <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index" #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
+                <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index"
+                    #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
                 <br><label class="helper-text" *ngIf="messages">{{messages}}</label>
             </div>
         </form>

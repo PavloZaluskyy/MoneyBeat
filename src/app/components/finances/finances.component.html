@@ -43,7 +43,7 @@
                 <div class="earnings">
                     <p class="title-cash" routerLink="/earnings-statistic">Натходження</p>
                     <p ngbTooltip="У вас надто великі витрати, які перевищують надходження"
-                     [disableTooltip]="isTogleTooltips" tooltipClass="togle-tooltip">{{totalEarning() + '₴ '}}
+                        [disableTooltip]="isTogleTooltips" tooltipClass="togle-tooltip">{{totalEarning() + '₴ '}}
                     </p>
                 </div>
             </div>
@@ -110,7 +110,8 @@
                     </div>
                 </div>
             </div>
-            <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="receipts.length >= 5" (click)="togleShowAllReceipts()">{{!isShowReceipts
+            <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="receipts.length >= 5"
+                (click)="togleShowAllReceipts()">{{!isShowReceipts
                 ? 'Показати всі' : 'Сховати'}}</a>
         </div>
     </div>

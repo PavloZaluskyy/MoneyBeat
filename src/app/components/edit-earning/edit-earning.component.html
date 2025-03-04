@@ -1,126 +1,78 @@
 <div class="wrapper">
-    <div class="title">РЕДАГУВАТИ НАДХОДЖЕННЯ № {{selectEarning.id}}</div>
-    <div class="row">
-        <div class="col s12 m12">
-            <div class="card">
-                <div class=" col s12">
-                    <input
-                      id="nameEarning"
-                      type="text"
-                      class="form-control"
-                      [class.validate]="isValidForm.nameEarning"
-                      [class.invalidate]="!isValidForm.nameEarning"
-                      aria-required="true"
-                      [(ngModel)]="selectEarning.nameEarning"
-                      [ngbTypeahead]="searchEarning"
-                    />
-                    <label for="nameEarning">Назва надходження</label>
-                    <span
-                      class="helper-text"
-                      *ngIf="!isValidForm.nameEarning"
-                      data-error="wrong"
-                      data-success="right"
-                      >{{ messageValid }}</span
-                    >
-                  </div>
-
-                  <div class="row">
-                    <div class=" col s12">
-                      <textarea id="textarea2" class="materialize-textarea" [(ngModel)]="selectEarning.description"
-                      data-length="120" ></textarea>
-                      <label for="textarea2">Опис надходження<span>(не обов'язково)</span></label>
-                    </div>
-                  </div>
-
-                  <div class="col s12 flex block-select-date">
-                    <a
-                      class="waves-effect light-blue darken-4 btn select-date"
-                      (click)="open(content)"
-                    >
-                      <i class="small material-icons">date_range</i>
-                      Вказати дату</a
-                    >
-                    <input
-                      id="selectDate"
-                      disabled
-                      type="text"
-                      [value]="selectEarning.date"
-                      class="validate input-date"
-                    />
-                  </div>  
-                  <div class="row t-a-block">
-                    <div class="price-block col s12 l10">
-                        <div class=" col s12 l12">
-                          <input
-                            id='price'
-                            type="number"
-                            [class.validate]="isValidForm.totalAmound"
-                            [class.invalidate]="!isValidForm.totalAmound"
-                            class="form-control"
-                            [(ngModel)]="selectEarning.totalAmound"
-                          />
-                          <label for='price'>Сума</label>
-                          <span
-                            class="helper-text"
-                            *ngIf="!isValidForm.totalAmound"
-                            data-error="wrong"
-                            data-success="right"
-                          >{{ 'Введіть суму надходження!' }}</span
-                          >
-                        </div>
-                      </div>
-                </div>  
-            </div>
+  <div class="title">РЕДАГУВАТИ НАДХОДЖЕННЯ № {{selectEarning.id}}</div>
+  <div class="row">
+    <div class="col s12 m12">
+      <div class="card">
+        <div class=" col s12">
+          <input id="nameEarning" type="text" class="form-control" [class.validate]="isValidForm.nameEarning"
+            [class.invalidate]="!isValidForm.nameEarning" aria-required="true" [(ngModel)]="selectEarning.nameEarning"
+            [ngbTypeahead]="searchEarning" />
+          <label for="nameEarning">Назва надходження</label>
+          <span class="helper-text" *ngIf="!isValidForm.nameEarning" data-error="wrong" data-success="right">{{
+            messageValid }}</span>
         </div>
+
+        <div class="row">
+          <div class=" col s12">
+            <textarea id="textarea2" class="materialize-textarea" [(ngModel)]="selectEarning.description"
+              data-length="120"></textarea>
+            <label for="textarea2">Опис надходження<span>(не обов'язково)</span></label>
+          </div>
+        </div>
+
+        <div class="col s12 flex block-select-date">
+          <a class="waves-effect light-blue darken-4 btn select-date" (click)="open(content)">
+            <i class="small material-icons">date_range</i>
+            Вказати дату</a>
+          <input id="selectDate" disabled type="text" [value]="selectEarning.date" class="validate input-date" />
+        </div>
+        <div class="row t-a-block">
+          <div class="price-block col s12 l10">
+            <div class=" col s12 l12">
+              <input id='price' type="number" [class.validate]="isValidForm.totalAmound"
+                [class.invalidate]="!isValidForm.totalAmound" class="form-control"
+                [(ngModel)]="selectEarning.totalAmound" />
+              <label for='price'>Сума</label>
+              <span class="helper-text" *ngIf="!isValidForm.totalAmound" data-error="wrong" data-success="right">{{
+                'Введіть суму надходження!' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
+  </div>
+
 </div>
 
 <div class="row">
-    <div class="col s12 m6 l6">
-        <div class="card">
-            <label>
-                <input type="checkbox"  [(ngModel)]="isRemember"/>
-                <span>Запам'ятати назву надходження</span>
-              </label>
-        </div>
+  <div class="col s12 m6 l6">
+    <div class="card">
+      <label>
+        <input type="checkbox" [(ngModel)]="isRemember" />
+        <span>Запам'ятати назву надходження</span>
+      </label>
     </div>
+  </div>
 </div>
 
 
 <div class="col s12 flex">
-    <a
-      class="btn-large waves-effect light-blue darken-4 btn"
-      (click)="sentEarning()"
-      >Зберегти надходження</a>
-</div>  
+  <a class="btn-large waves-effect light-blue darken-4 btn" (click)="sentEarning()">Зберегти надходження</a>
+</div>
 
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">
-        Виберіть дату
-      </h4>
-      <button
-        type="button"
-        class="btn-close"
-        aria-label="Close"
-        (click)="modal.dismiss('Cross click')"
-      ></button>
-    </div>
-    <div class="wrapper">
-      <ngb-datepicker
-        #dp
-        [(ngModel)]="modelDate"
-        (navigate)="date = $event.next"
-      />
-    </div>
-    <div class="modal-footer">
-      <button
-        type="button"
-        class="btn btn-outline-secondary"
-        (click)="modal.close('Save click')"
-      >
-        Зберегти
-      </button>
-    </div>
-  </ng-template>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Виберіть дату
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="wrapper">
+    <ngb-datepicker #dp [(ngModel)]="modelDate" (navigate)="date = $event.next" />
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">
+      Зберегти
+    </button>
+  </div>
+</ng-template>

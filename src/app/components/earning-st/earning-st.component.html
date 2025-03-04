@@ -33,7 +33,7 @@
                         <div class="circle"></div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
     <div class="wrapper" *ngIf="isShowDate">
@@ -57,9 +57,10 @@
                                 <h5>{{receipt.nameEarning}}</h5>
                             </div>
                             <div class="flex">
-                                <div class="price m-l-r-2rem">{{receipt.totalAmound | currency:'₴':'symbol':'2.2-3':'en'}}</div>
+                                <div class="price m-l-r-2rem">{{receipt.totalAmound |
+                                    currency:'₴':'symbol':'2.2-3':'en'}}</div>
                                 <div class="date m-l-r-2rem">{{receipt.date}}</div>
-                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem" >ДО
+                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem">ДО
                                     СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
 
                             </div>
@@ -70,8 +71,7 @@
                     </div>
                 </div>
             </div>
-            <a class="btn-large waves-effect light-blue darken-4 btn"
-                (click)="togleShowAllReceipts()">{{!isShowReceipts
+            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="togleShowAllReceipts()">{{!isShowReceipts
                 ? 'Показати всі' : 'Сховати'}}</a>
         </div>
         <div class="wrapper" *ngIf="viewEarning.length <= 5 ? true : false">
@@ -83,12 +83,14 @@
                                 <h5>{{receipt.nameEarning}}</h5>
                             </div>
                             <div class="flex">
-                                <div class="price m-l-r-2rem">{{receipt.totalAmound | currency:'₴':'symbol':'2.2-3':'en'}}</div>
+                                <div class="price m-l-r-2rem">{{receipt.totalAmound |
+                                    currency:'₴':'symbol':'2.2-3':'en'}}</div>
                                 <div class="date m-l-r-2rem">{{receipt.date}}</div>
-                                
+
                             </div>
                             <div class="">
-                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem"  [routerLink]="['/earning-details', receipt.id]">ДО
+                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem"
+                                    [routerLink]="['/earning-details', receipt.id]">ДО
                                     НАДХОДЖЕННЯ<i class="material-icons">receipt</i></a>
 
                             </div>

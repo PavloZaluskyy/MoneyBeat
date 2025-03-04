@@ -4,7 +4,8 @@
             <form [formGroup]="confirmCodeForm">
                 <h3 class="title">ВВедіть PIN-CODE</h3>
                 <div formArrayName="digits">
-                  <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index" #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
+                    <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index"
+                        #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
                     <br><label class="helper-text" *ngIf="messages">{{messages}}</label>
                 </div>
             </form>
@@ -19,51 +20,46 @@
             <div class="row">
                 <div ngbAccordion #accordion="ngbAccordion">
                     <div [ngbAccordionItem]="'receipt-'+ index" *ngFor="let receipt of allReceipt; let index = index">
-                        <div ngbAccordionHeader ngbAccordionToggle class="accordion-button custom-header justify-content-between ">
+                        <div ngbAccordionHeader ngbAccordionToggle
+                            class="accordion-button custom-header justify-content-between ">
                             <p class="m-0">{{receipt.date}}</p>
                             <p class="m-0">{{receipt.nameStore}}</p>
                             <p class="m-0">{{receipt.totalAmaund}} ₴</p>
-                            
+
                         </div>
                         <div ngbAccordionCollapse>
                             <div ngbAccordionBody>
                                 <ng-template>
                                     <!-- <div class="col s12 m12" > -->
-                                        <div class="card flex">
-                                            <p>Назва</p>
-                                            <p>катег.</p>
-                                            <p>к-сть</p>
-                                            <p>ціна</p>
-                                        </div>
-                                   <!-- </div> -->
-                                   <!-- <div class="col s12 m12" > -->
-                                        <div class="card flex" *ngFor="let good of receipt.goods">
-                                            <p>{{good.name}}</p>
-                                            <p>{{good.category}}</p>
-                                            <p>{{good.quantity}}</p>
-                                            <p>{{good.price}}  ₴</p>
-                                        </div>
-                                   <!-- </div> -->
-                                   <div class="btns-wrapper">
-           
-                                    <a
-                                    class="btn-small waves-effect light-blue darken-4 btn" 
-                                    [routerLink]="['/detail', receipt.id]"
-                                    > <i class="material-icons">
-                                        visibility
-                                    </i></a>
-                                    <a
-                                    class="btn-small waves-effect light-blue darken-4 btn" 
-                                    [routerLink]="['/edit-receipt', receipt.id]"
-                                    > <i class="material-icons">
-                                        edit
-                                    </i></a>
-                                    <a
-                                    class="btn-small waves-effect light-blue darken-4 btn" 
-                                    (click)="delete(receipt.id)"
-                                    > <i class="material-icons">
-                                        delete
-                                    </i></a>
+                                    <div class="card flex">
+                                        <p>Назва</p>
+                                        <p>катег.</p>
+                                        <p>к-сть</p>
+                                        <p>ціна</p>
+                                    </div>
+                                    <!-- </div> -->
+                                    <!-- <div class="col s12 m12" > -->
+                                    <div class="card flex" *ngFor="let good of receipt.goods">
+                                        <p>{{good.name}}</p>
+                                        <p>{{good.category}}</p>
+                                        <p>{{good.quantity}}</p>
+                                        <p>{{good.price}} ₴</p>
+                                    </div>
+                                    <!-- </div> -->
+                                    <div class="btns-wrapper">
+
+                                        <a class="btn-small waves-effect light-blue darken-4 btn"
+                                            [routerLink]="['/detail', receipt.id]"> <i class="material-icons">
+                                                visibility
+                                            </i></a>
+                                        <a class="btn-small waves-effect light-blue darken-4 btn"
+                                            [routerLink]="['/edit-receipt', receipt.id]"> <i class="material-icons">
+                                                edit
+                                            </i></a>
+                                        <a class="btn-small waves-effect light-blue darken-4 btn"
+                                            (click)="delete(receipt.id)"> <i class="material-icons">
+                                                delete
+                                            </i></a>
                                     </div>
                                 </ng-template>
                             </div>

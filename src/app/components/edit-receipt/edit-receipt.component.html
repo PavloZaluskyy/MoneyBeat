@@ -1,220 +1,118 @@
 <div class="wrapper">
-    <div class="title"> РЕДАГУВАТИ ЧЕК № {{selectReceipt.id ? selectReceipt.id : 1}}</div>
-    <div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class=" col s12">
-              <input
-                id="nameStore"
-                type="text"
-                class="form-control"
-                [class.validate]="isValidForm.nameStore"
-                [class.invalidate]="!isValidForm.nameStore"
-                aria-required="true"
-                [(ngModel)]="selectReceipt.nameStore"
-                (ngModelChange)="parseAddres()"
-                [ngbTypeahead]="searchStore"
-              />
-              <label for="nameStore">Назва магазину</label>
-              <span
-                class="helper-text"
-                *ngIf="!isValidForm.nameStore"
-                data-error="wrong"
-                data-success="right"
-                >{{ messageValid }}</span
-              >
-            </div>
-            <div class=" col s12">
-              <input
-                id="adressStore"
-                type="text"
-                class="form-control"
-                [class.validate]="isValidForm.adressStore"
-                [class.invalidate]="!isValidForm.adressStore"
-                [(ngModel)]="selectReceipt.adressStore"
-              />
-              <label for="adressStore">Адреса магазину</label>
-              <span
-                class="helper-text"
-                *ngIf="!isValidForm.adressStore"
-                data-error="wrong"
-                data-success="right"
-                >{{ messageValid }}</span
-              >
-            </div>
-            <div class="col s12 flex block-select-date">
-              <a
-                class="waves-effect light-blue darken-4 btn select-date"
-                (click)="open(content)"
-              >
-                <i class="small material-icons">date_range</i>
-                Вказати дату</a
-              >
-              <input
-                id="selectDate"
-                disabled
-                type="text"
-                [value]="selectReceipt.date "
-                class="validate input-date"
-              />
-            </div>
-            <ng-template #content let-modal>
-              <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">
-                  Виберіть дату покупки
-                </h4>
-                <button
-                  type="button"
-                  class="btn-close"
-                  aria-label="Close"
-                  (click)="modal.dismiss('Cross click')"
-                ></button>
-              </div>
-              <div class="wrapper">
-                <ngb-datepicker
-                  #dp
-                  [(ngModel)]="modelDate"
-                  (navigate)="date = $event.next"
-                />
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary"
-                  (click)="modal.close('Save click')"
-                >
-                  Зберегти
-                </button>
-              </div>
-            </ng-template>
-          </div>
+  <div class="title"> РЕДАГУВАТИ ЧЕК № {{selectReceipt.id ? selectReceipt.id : 1}}</div>
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card">
+        <div class=" col s12">
+          <input id="nameStore" type="text" class="form-control" [class.validate]="isValidForm.nameStore"
+            [class.invalidate]="!isValidForm.nameStore" aria-required="true" [(ngModel)]="selectReceipt.nameStore"
+            (ngModelChange)="parseAddres()" [ngbTypeahead]="searchStore" />
+          <label for="nameStore">Назва магазину</label>
+          <span class="helper-text" *ngIf="!isValidForm.nameStore" data-error="wrong" data-success="right">{{
+            messageValid }}</span>
         </div>
+        <div class=" col s12">
+          <input id="adressStore" type="text" class="form-control" [class.validate]="isValidForm.adressStore"
+            [class.invalidate]="!isValidForm.adressStore" [(ngModel)]="selectReceipt.adressStore" />
+          <label for="adressStore">Адреса магазину</label>
+          <span class="helper-text" *ngIf="!isValidForm.adressStore" data-error="wrong" data-success="right">{{
+            messageValid }}</span>
+        </div>
+        <div class="col s12 flex block-select-date">
+          <a class="waves-effect light-blue darken-4 btn select-date" (click)="open(content)">
+            <i class="small material-icons">date_range</i>
+            Вказати дату</a>
+          <input id="selectDate" disabled type="text" [value]="selectReceipt.date " class="validate input-date" />
+        </div>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">
+              Виберіть дату покупки
+            </h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="wrapper">
+            <ngb-datepicker #dp [(ngModel)]="modelDate" (navigate)="date = $event.next" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">
+              Зберегти
+            </button>
+          </div>
+        </ng-template>
       </div>
-      <div class="wrapper">
-        <div class="row" *ngFor="let good of selectReceipt.goods; index as index">
-          <div class="col s12 m12">
-            <div class="card">
-              <div class="flex">
-                <div class=" col s12 l3">
-                  <input
-                    id="{{ 'nameGood' + index }}"
-                    type="text"
-                    class="form-control validate"
-                    [(ngModel)]="good.name"
-                    [class.validate]="isValidGood[index].name"
-                    [class.invalidate]="!isValidGood[index].name"
-                    (ngModelChange)="parseCategoryGood(good.name, index)"
-                    [ngbTypeahead]="searchGood"
-                  />
-                  <label for="{{ 'nameGood' + index }}">Назва товару</label>
-                  <span
-                  class="helper-text"
-                  *ngIf="!isValidGood[index].name"
-                  data-error="wrong"
-                  data-success="right"
-                  >{{ 'Введіть назву товару' }}</span
-                >
-                </div>
-                <div class="quantity-wrapper">
-                  <a
-                    class="btn-small waves-effect light-blue darken-4 btn"
-                    (click)="minus(index)"
-                    >-</a>
-                  <div class="quantity-inp">
-                    <input type="number" [(ngModel)]="good.quantity" disabled  class="" id="{{ 'quantityGood' + index }}">
-                    <label for="{{ 'quantityGood' + index }}">Кількість</label> 
-                  </div>
-                  <a
-                    class="btn-small waves-effect light-blue darken-4 btn"
-                    (click)="plus(index)"
-                    >+</a>
-                </div>
-                <div class="col s12 l3">
-                  <input
-                    id="{{ 'category' + index }}"
-                    type="text"
-                    [class.validate]="isValidGood[index].category"
-                    [class.invalidate]="!isValidGood[index].category"
-                    class="form-control validate"
-                    [(ngModel)]="good.category"
-                    [ngbTypeahead]="searchCategory"
-                  />
-                  <label for="{{ 'category' + index }}">Категорія</label>
-                  <span
-                  class="helper-text"
-                  *ngIf="!isValidGood[index].category"
-                  data-error="wrong"
-                  data-success="right"
-                  >{{ 'Введіть категорію товару' }}</span
-                >
-                </div>
-                <div class="price-block col s12 l1">
-                  <div class=" col s6 l3">
-                    <input
-                      id="{{ 'price' + index }}"
-                      type="number"
-                      [class.validate]="isValidGood[index].price"
-                      [class.invalidate]="!isValidGood[index].price"
-                      class="form-control validate"
-                      [(ngModel)]="good.price"
-                    />
-                    <label for="{{ 'price' + index }}">Ціна</label>
-                  </div>
-                  <span
-                    >({{
-                      good.price && good.quantity
-                        ? +good.price / +good.quantity
-                        : "0"
-                    }})</span
-                  >
-                  <span
-                  class="helper-text"
-                  *ngIf="!isValidGood[index].price"
-                  data-error="wrong"
-                  data-success="right"
-                  >{{ 'Введіть ціну товару' }}</span
-                >
-                </div>
-                <div class="flex btn-block col s12 l2">
-                  <a
-                    class="waves-effect light-blue darken-4 btn"
-                    (click)="refresh(index)"
-                  >
-                    <i class="small material-icons">loop</i></a
-                  >
-                  <a
-                    class="waves-effect light-blue darken-4 btn"
-                    (click)="delete(index)"
-                  >
-                    <i class="small material-icons">clear</i></a
-                  >
-                </div>
-              </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="row" *ngFor="let good of selectReceipt.goods; index as index">
+      <div class="col s12 m12">
+        <div class="card">
+          <div class="flex">
+            <div class=" col s12 l3">
+              <input id="{{ 'nameGood' + index }}" type="text" class="form-control validate" [(ngModel)]="good.name"
+                [class.validate]="isValidGood[index].name" [class.invalidate]="!isValidGood[index].name"
+                (ngModelChange)="parseCategoryGood(good.name, index)" [ngbTypeahead]="searchGood" />
+              <label for="{{ 'nameGood' + index }}">Назва товару</label>
+              <span class="helper-text" *ngIf="!isValidGood[index].name" data-error="wrong" data-success="right">{{
+                'Введіть назву товару' }}</span>
             </div>
-          </div>
-        </div>
-        <div class="col s12 flex">
-          <a
-            class="btn-floating btn-large waves-effect light-blue darken-4 btn"
-            (click)="addNewGood()"
-            ><i class="material-icons">add</i></a
-          >
-        </div>
-        <div class="row t-a-block">
-          <div class="col s12">
-            <div class="card">
-              <div class="totalAmound">
-                <p>ЗАГАЛЬНА СУМА </p>
-                <p>{{ getTotalAmound() }} грн</p>
+            <div class="quantity-wrapper">
+              <a class="btn-small waves-effect light-blue darken-4 btn" (click)="minus(index)">-</a>
+              <div class="quantity-inp">
+                <input type="number" [(ngModel)]="good.quantity" disabled class="" id="{{ 'quantityGood' + index }}">
+                <label for="{{ 'quantityGood' + index }}">Кількість</label>
               </div>
+              <a class="btn-small waves-effect light-blue darken-4 btn" (click)="plus(index)">+</a>
+            </div>
+            <div class="col s12 l3">
+              <input id="{{ 'category' + index }}" type="text" [class.validate]="isValidGood[index].category"
+                [class.invalidate]="!isValidGood[index].category" class="form-control validate"
+                [(ngModel)]="good.category" [ngbTypeahead]="searchCategory" />
+              <label for="{{ 'category' + index }}">Категорія</label>
+              <span class="helper-text" *ngIf="!isValidGood[index].category" data-error="wrong" data-success="right">{{
+                'Введіть категорію товару' }}</span>
+            </div>
+            <div class="price-block col s12 l1">
+              <div class=" col s6 l3">
+                <input id="{{ 'price' + index }}" type="number" [class.validate]="isValidGood[index].price"
+                  [class.invalidate]="!isValidGood[index].price" class="form-control validate"
+                  [(ngModel)]="good.price" />
+                <label for="{{ 'price' + index }}">Ціна</label>
+              </div>
+              <span>({{
+                good.price && good.quantity
+                ? +good.price / +good.quantity
+                : "0"
+                }})</span>
+              <span class="helper-text" *ngIf="!isValidGood[index].price" data-error="wrong" data-success="right">{{
+                'Введіть ціну товару' }}</span>
+            </div>
+            <div class="flex btn-block col s12 l2">
+              <a class="waves-effect light-blue darken-4 btn" (click)="refresh(index)">
+                <i class="small material-icons">loop</i></a>
+              <a class="waves-effect light-blue darken-4 btn" (click)="delete(index)">
+                <i class="small material-icons">clear</i></a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col s12 flex">
-        <a
-          class="btn-large waves-effect light-blue darken-4 btn"
-          (click)="sentReceipt()"
-          >Зберегти чек</a>
+    </div>
+    <div class="col s12 flex">
+      <a class="btn-floating btn-large waves-effect light-blue darken-4 btn" (click)="addNewGood()"><i
+          class="material-icons">add</i></a>
+    </div>
+    <div class="row t-a-block">
+      <div class="col s12">
+        <div class="card">
+          <div class="totalAmound">
+            <p>ЗАГАЛЬНА СУМА </p>
+            <p>{{ getTotalAmound() }} грн</p>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="col s12 flex">
+    <a class="btn-large waves-effect light-blue darken-4 btn" (click)="sentReceipt()">Зберегти чек</a>
+  </div>
 </div>

@@ -29,7 +29,6 @@ import { ReceiptService } from '../../services/receipt.service';
   styleUrl: './categories.component.scss',
 })
 export class CategoriesComponent implements OnInit {
-
   private modalService = inject(NgbModal);
   currentDate = new Date();
   currentDateFrom: any;
@@ -68,7 +67,7 @@ export class CategoriesComponent implements OnInit {
   goodsDate: any = [];
 
   isShowReceipts: boolean = false;
-  isShowDate: boolean= false;
+  isShowDate: boolean = false;
   isLoader: boolean = false;
   open(content: TemplateRef<any>) {
     this.modalService
@@ -101,96 +100,95 @@ export class CategoriesComponent implements OnInit {
     this.dateTo = date[1];
   }
 
-  formatDate(input: any) {    
-      if (input.length >= 20) {
-        return new Date(input) ;
-      } else {
-        var datePart = input.match(/\d+/g),
-          year = datePart[2].substring(2), // get only two digits
-          month = datePart[1],
-          day = datePart[0];
-  
-        return new Date(month + '/' + day + '/' + year);
-      }
+  formatDate(input: any) {
+    if (input.length >= 20) {
+      return new Date(input);
+    } else {
+      var datePart = input.match(/\d+/g),
+        year = datePart[2].substring(2), // get only two digits
+        month = datePart[1],
+        day = datePart[0];
+
+      return new Date(month + '/' + day + '/' + year);
     }
+  }
 
-  constructor(private receiptService: ReceiptService,
-              private route: ActivatedRoute,
-              private local: LocalStorageService
-
+  constructor(
+    private receiptService: ReceiptService,
+    private route: ActivatedRoute,
+    private local: LocalStorageService
   ) {}
 
   ngOnInit(): void {
     this.currentDateFrom = this.firstDateOfMonth();
-    this.receiptsAll = this.receiptService.getAllReceipts()
+    this.receiptsAll = this.receiptService.getAllReceipts();
     this.allCategories = this.getAllCategories();
     if (this.allCategories?.length) {
-          this.selectCategory = this.allCategories?.filter((item: string) => {
-            return item === this.route.snapshot.paramMap.get('name') ? item : null;
-          })[0];
+      this.selectCategory = this.allCategories?.filter((item: string) => {
+        return item === this.route.snapshot.paramMap.get('name') ? item : null;
+      })[0];
     }
-    this.getReceiptByDateAndCategory(this.currentDateFrom, this.currentDate)
-      this.goodsDate = this.getGoodsbySelectCategory()
-      this.convertDateForPie();
+    this.getReceiptByDateAndCategory(this.currentDateFrom, this.currentDate);
+    this.goodsDate = this.getGoodsbySelectCategory();
+    this.convertDateForPie();
   }
 
-  searchDate(){
+  searchDate() {
     this.isLoader = true;
     setTimeout(() => {
-    if(this.dateFrom && this.dateTo) {      
-      this.getReceiptByDateAndCategory(this.dateFrom, this.dateTo)
-    } else {
-      this.getReceiptByDateAndCategory(this.currentDateFrom, this.currentDate)
-    }
-    this.isShowDate = true;
-    this.isLoader = false;
-    this.goodsDate = this.getGoodsbySelectCategory()
-    this.convertDateForPie();
-  }, 2000)
+      if (this.dateFrom && this.dateTo) {
+        this.getReceiptByDateAndCategory(this.dateFrom, this.dateTo);
+      } else {
+        this.getReceiptByDateAndCategory(
+          this.currentDateFrom,
+          this.currentDate
+        );
+      }
+      this.isShowDate = true;
+      this.isLoader = false;
+      this.goodsDate = this.getGoodsbySelectCategory();
+      this.convertDateForPie();
+    }, 2000);
   }
 
-  getReceiptByDateAndCategory(startDate: any, endDate: any){
+  getReceiptByDateAndCategory(startDate: any, endDate: any) {
     let arr: Receipt[] = [];
-    if(startDate.year) {
+    if (startDate.year) {
       arr = this.receiptsAll.filter((group) => {
-        return this.formatDate(group.date) >= new Date(`${startDate.year}.${startDate.month}.${startDate.day}`) 
-          && 
+        return (
+          this.formatDate(group.date) >=
+            new Date(`${startDate.year}.${startDate.month}.${startDate.day}`) &&
           this.formatDate(group.date) <=
-                new Date(
-                  `${endDate.year}.${endDate.month}.${endDate.day}`
-                )
-      })
+            new Date(`${endDate.year}.${endDate.month}.${endDate.day}`)
+        );
+      });
     } else {
       arr = this.receiptsAll.filter((group) => {
-        return this.formatDate(group.date) >= new Date(startDate) 
-          && 
-          this.formatDate(group.date) <=
-                new Date(endDate)
-      })
+        return (
+          this.formatDate(group.date) >= new Date(startDate) &&
+          this.formatDate(group.date) <= new Date(endDate)
+        );
+      });
     }
-    
+
     let arr2: any = [];
-    arr.forEach(receipt=> {
-      let a = receipt.goods.find((good: any) => { 
-        if(good.category === this.selectCategory) {
+    arr.forEach((receipt) => {
+      let a = receipt.goods.find((good: any) => {
+        if (good.category === this.selectCategory) {
           good.storeName = receipt.nameStore;
           good.date = receipt.date;
           good.id = receipt.id;
-          return good
+          return good;
         }
-        
-        })
+      });
       if (a) {
-        arr2.push(a)
+        arr2.push(a);
       }
-      
-    })
-    this.viewGoods = arr2;    
+    });
+    this.viewGoods = arr2;
   }
 
-
-    
-    getAllCategories(): string[] | null {
+  getAllCategories(): string[] | null {
     if (this.receiptsAll.length) {
       let a = this.receiptsAll.map((receipt: Receipt) => {
         return receipt.goods.map((good: Goods) => {
@@ -205,28 +203,26 @@ export class CategoriesComponent implements OnInit {
   }
 
   getGoodsbySelectCategory() {
-      if (this.viewGoods.length) {
-        let arr = this.viewGoods.map(item => {
-          return { name: item.name, value: item.price, quantity: item.quantity };
-        })
-        let arr2 = [...new Set(arr.flat())];
-        let arr3: any = [];
-        arr2.forEach((item: any) => {
-          if (item) {
-            arr3.push(item);
-          }
-        });        
-        return this.processArray(arr3);
-      }
-      return null;
+    if (this.viewGoods.length) {
+      let arr = this.viewGoods.map((item) => {
+        return { name: item.name, value: item.price, quantity: item.quantity };
+      });
+      let arr2 = [...new Set(arr.flat())];
+      let arr3: any = [];
+      arr2.forEach((item: any) => {
+        if (item) {
+          arr3.push(item);
+        }
+      });
+      return this.processArray(arr3);
     }
+    return null;
+  }
 
-    
   processArray(arr: any) {
     const result: any = {};
     arr.forEach((item: any) => {
       if (!result[item.name]) {
-        
         result[item.name] = {
           name: item.name,
           quanity: 0,
@@ -234,25 +230,41 @@ export class CategoriesComponent implements OnInit {
           color: this.getRandomColor(),
         };
       }
-      result[item.name].quanity ++;
+      result[item.name].quanity++;
       result[item.name].value += parseInt(item.value);
     });
     return Object.values(result);
   }
 
   convertDateForPie() {
-    if(this.viewGoods && this.viewGoods.length) {
-      this.DateGoodsGoogle = this.goodsDate.map((item: {name: string, value: number, quanity: number, color: string}) => {return [item.name, item.value];});
-      this.options.colors = this.goodsDate.map((item: {name: string, value: number, quanity: number, color: string}) => item.color);      
-          } else {
-            this.DateGoodsGoogle = [['Пусто', 0]];
-          }
+    if (this.viewGoods && this.viewGoods.length) {
+      this.DateGoodsGoogle = this.goodsDate.map(
+        (item: {
+          name: string;
+          value: number;
+          quanity: number;
+          color: string;
+        }) => {
+          return [item.name, item.value];
+        }
+      );
+      this.options.colors = this.goodsDate.map(
+        (item: {
+          name: string;
+          value: number;
+          quanity: number;
+          color: string;
+        }) => item.color
+      );
+    } else {
+      this.DateGoodsGoogle = [['Пусто', 0]];
+    }
   }
 
   firstDateOfMonth() {
-      let date = new Date();
-      return new Date(date.getFullYear(), date.getMonth(), 1);
-    }
+    let date = new Date();
+    return new Date(date.getFullYear(), date.getMonth(), 1);
+  }
 
   getRandomColor() {
     const letters = '0123456789ABCDEF';
@@ -263,7 +275,7 @@ export class CategoriesComponent implements OnInit {
     return color;
   }
 
-   getContrastYIQ(hexcolor: any) {
+  getContrastYIQ(hexcolor: any) {
     var r = parseInt(hexcolor.substring(1, 3), 16);
     var g = parseInt(hexcolor.substring(3, 5), 16);
     var b = parseInt(hexcolor.substring(5, 7), 16);
@@ -272,26 +284,26 @@ export class CategoriesComponent implements OnInit {
   }
 
   cutReceiptsArr(): any {
-      if (this.viewGoods.length > 5 && !this.isShowReceipts) {
-        let arr: {
-          category: string;
-          data: string;
-          name: string;
-          price: number;
-          quantity: number;
-          storeName: string;
-        }[] = [];
-        this.isShowReceipts = false;
-        for (let index = 0; index < 5; index++) {
-          arr.push(this.viewGoods[index]);
-        }
-        return arr;
+    if (this.viewGoods.length > 5 && !this.isShowReceipts) {
+      let arr: {
+        category: string;
+        data: string;
+        name: string;
+        price: number;
+        quantity: number;
+        storeName: string;
+      }[] = [];
+      this.isShowReceipts = false;
+      for (let index = 0; index < 5; index++) {
+        arr.push(this.viewGoods[index]);
       }
-      this.isShowReceipts = true;
-      return this.viewGoods;
+      return arr;
     }
+    this.isShowReceipts = true;
+    return this.viewGoods;
+  }
 
-     togleShowAllReceipts() {
-      this.isShowReceipts = !this.isShowReceipts;
-    }
+  togleShowAllReceipts() {
+    this.isShowReceipts = !this.isShowReceipts;
+  }
 }

@@ -11,60 +11,70 @@
         color: #1f3a6d;
         font-weight: bold;
     }
-    .about-receipt{
+
+    .about-receipt {
         padding: 1rem 2rem;
-        .name-detail{
+
+        .name-detail {
             font-size: 2rem;
             font-weight: bold;
             color: #1f3a6d;
         }
+
         .address-detail {
             font-size: 1.5rem;
             font-weight: 500;
         }
-        .date-detail{
+
+        .date-detail {
             font-size: 1.5rem;
             color: #a9a9a9;
             font-weight: 500;
         }
     }
+
     .margin-zero {
         margin-left: 0;
         margin-right: 0;
     }
 
-    .flex-column{
+    .flex-column {
         flex-direction: column;
     }
-    
-    .goods-ls{
+
+    .goods-ls {
         width: 100%;
         display: flex;
         padding: 1rem;
         justify-content: space-between;
         flex-wrap: wrap;
         align-items: center;
-        .name-good, .price{
+
+        .name-good,
+        .price {
             font-size: 1.5rem;
             color: #1f3a6d;
             font-weight: bold;
-            .quanity, .price-per-one {
+
+            .quanity,
+            .price-per-one {
                 font-size: 1.3rem;
                 color: #a9a9a9;
                 font-weight: bold;
             }
         }
     }
+
     .totalAmound {
         display: flex;
         justify-content: space-between;
         flex-wrap: nowrap;
         align-items: center;
         padding: 1rem;
-        h3 {
-          font-size: 1.5rem;
-          font-weight: bold;
-        }
-      }
-}
 
+        h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    }
+}

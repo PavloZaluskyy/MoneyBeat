@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-self: center;
-    
+
     .title {
         margin-top: 1.5rem;
         text-align: center;
@@ -16,24 +16,30 @@
         font-weight: bold;
         margin: 0.5rem 0;
     }
-    .input-field{
+
+    .input-field {
         width: 100%;
-        label{
+
+        label {
             width: auto;
         }
-        }
-    .btns-wrapper{
+    }
+
+    .btns-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        a{
+
+        a {
             width: auto;
             margin-top: 1rem;
         }
     }
-    form{
+
+    form {
         text-align: center;
     }
+
     .pincode {
         width: 40px;
         height: 60px;
@@ -42,16 +48,19 @@
         border: 1px solid gray;
         font-size: 3rem;
         margin-left: 12px;
-      }
-      .helper-text {
+    }
+
+    .helper-text {
         color: red;
-      }   
+    }
 }
+
 .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+
     .title {
         margin-top: 1.5rem;
         text-align: center;
@@ -59,7 +68,8 @@
         color: #1f3a6d;
         font-weight: bold;
     }
-    .m-t-1{
+
+    .m-t-1 {
         margin-top: 2rem;
     }
 }

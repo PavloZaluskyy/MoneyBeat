@@ -1,20 +1,15 @@
 <div class="wrapper">
-    
-    <ngb-datepicker  #dp (dateSelect)="onDateSelection($event)" [displayMonths]="1" [dayTemplate]="t" outsideDays="hidden" />
 
-<ng-template  #t let-date let-focused="focused">
-	<span
-		class="custom-day"
-		[class.focused]="focused"
-		[class.range]="isRange(date)"
-		[class.faded]="isHovered(date) || isInside(date)"
-		(mouseenter)="hoveredDate = date"
-		(mouseleave)="hoveredDate = null"
-        
-	>
-		{{ date.day }}
-	</span>
-</ng-template>
+	<ngb-datepicker #dp (dateSelect)="onDateSelection($event)" [displayMonths]="1" [dayTemplate]="t"
+		outsideDays="hidden" />
+
+	<ng-template #t let-date let-focused="focused">
+		<span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+			[class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+			(mouseleave)="hoveredDate = null">
+			{{ date.day }}
+		</span>
+	</ng-template>
 
 
 

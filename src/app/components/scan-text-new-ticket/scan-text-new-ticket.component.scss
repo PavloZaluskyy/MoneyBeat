@@ -5,11 +5,13 @@ ngb-datepicker {
 .ngb-dp-month {
   width: 100% !important;
 }
+
 .ngb-dp-day,
 .ngb-dp-weekday,
 .ngb-dp-week-number {
   width: 14% !important;
 }
+
 .custom-day {
   text-align: center;
   padding: 0.185rem 0.25rem;
@@ -17,14 +19,17 @@ ngb-datepicker {
   height: 2rem;
   width: 2rem;
 }
+
 .custom-day.focused {
   background-color: #e6e6e6;
 }
+
 .custom-day.range,
 .custom-day:hover {
   background-color: rgb(2, 117, 216);
   color: white;
 }
+
 .custom-day.faded {
   background-color: rgba(2, 117, 216, 0.5);
 }
@@ -32,9 +37,11 @@ ngb-datepicker {
 .helper-text {
   color: red;
 }
+
 .input-field {
   margin-left: 0 !important;
 }
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -48,31 +55,38 @@ ngb-datepicker {
   display: flex;
   justify-content: center;
   align-items: center;
+
   i {
     font-size: 3rem;
   }
 }
+
 .file-field {
   float: none;
   display: flex;
   flex-direction: row;
   align-items: center;
+
   .file-path-wrapper {
     flex: 1;
   }
 }
+
 .wrapper-view {
   display: flex;
   justify-content: space-around;
   align-items: center;
+
   .your-img {
     width: 50%;
     height: 25rem;
   }
+
   .wrapper-warn {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .warn-text {
       color: red;
       border-radius: 30px;
@@ -81,6 +95,7 @@ ngb-datepicker {
       padding: 1rem;
       margin-left: 1rem;
     }
+
     .btn {
       margin: 1rem auto;
     }
@@ -95,6 +110,7 @@ ngb-datepicker {
   top: 56px;
   z-index: 9;
   background-color: #fff;
+
   .fixed_pos {
     position: fixed;
     width: 100vw;
@@ -103,6 +119,7 @@ ngb-datepicker {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .status-text,
     .progres-text {
       margin: 1rem auto;
@@ -111,6 +128,7 @@ ngb-datepicker {
     }
   }
 }
+
 .title {
   margin-top: 1.5rem;
   text-align: center;
@@ -118,34 +136,41 @@ ngb-datepicker {
   color: #1f3a6d;
   font-weight: bold;
 }
+
 .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-self: center;
 }
+
 .flex {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+
   .price-block {
     display: flex;
     justify-content: center;
     align-items: center;
+
     span {
       font-size: 1.5rem;
       font-weight: bold;
     }
   }
+
   a {
     margin-bottom: 1rem;
   }
 }
+
 .btn-block {
   justify-content: space-around;
 }
+
 .title {
   margin-top: 1.5rem;
   text-align: center;
@@ -153,6 +178,7 @@ ngb-datepicker {
   color: #1f3a6d;
   font-weight: bold;
 }
+
 .diapazone-date {
   display: flex;
   flex-direction: row;
@@ -174,15 +200,18 @@ ngb-datepicker {
     cursor: pointer;
   }
 }
+
 .t-a-block {
   margin-left: 0;
   margin-right: 0;
+
   .totalAmound {
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
     align-items: center;
     padding: 1rem;
+
     p {
       margin-bottom: 0;
       font-size: 1.5rem;
@@ -193,6 +222,7 @@ ngb-datepicker {
 
 .block-select-date {
   justify-content: space-around;
+
   .input-date {
     width: 50%;
   }
@@ -207,23 +237,28 @@ ngb-datepicker {
     display: flex;
     justify-content: center;
     align-items: center;
+
     i {
       font-size: 3rem;
     }
   }
+
   .file-field {
     float: none;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+
   .wrapper-view {
     flex-direction: column;
     justify-content: flex-start;
+
     .your-img {
       width: 100%;
       height: 25rem;
     }
+
     .wrapper-warn {
       .warn-text {
         margin: 1rem auto;
@@ -234,6 +269,7 @@ ngb-datepicker {
   .flex {
     flex-direction: column;
   }
+
   .btn-block {
     flex-direction: row;
     margin-bottom: 1rem;

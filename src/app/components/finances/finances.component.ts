@@ -59,10 +59,11 @@ export class FinancesComponent implements OnInit {
   receipts: Receipt[] = [];
   allEarning: Earning[] = [];
   client: Client | any;
-  cash: number = 0
-  constructor(private _localStorage: LocalStorageService,
-              private _earningService: EarningsService,
-              private _clientService: ClientService
+  cash: number = 0;
+  constructor(
+    private _localStorage: LocalStorageService,
+    private _earningService: EarningsService,
+    private _clientService: ClientService
   ) {}
   ngOnInit() {
     this.currentDateFrom = this.firstDateOfMonth();
@@ -70,15 +71,15 @@ export class FinancesComponent implements OnInit {
     this.categiriesDate = this.getCategoriesAndTZotalAmound();
 
     this.convertDateForPie();
-    this.allEarning =  this._earningService.getAllEarnings();
+    this.allEarning = this._earningService.getAllEarnings();
     this.client = this._clientService.getClient();
-    this.cash = this.getCash()
+    this.cash = this.getCash();
     // this.cutReceiptsArr()
   }
 
-  getCash(): number{
+  getCash(): number {
     let totalSpend = this.totalSpending();
-    let totalEar = this.totalEarning()
+    let totalEar = this.totalEarning();
     return this.client.moneyInCard - totalSpend + totalEar;
   }
   firstDateOfMonth() {
@@ -110,16 +111,15 @@ export class FinancesComponent implements OnInit {
     return sum;
   }
 
-totalEarning(): number {
-  let sum: number = 0;
-  if(this.allEarning.length){
-    this.allEarning.forEach(
-      (item: Earning) => {
+  totalEarning(): number {
+    let sum: number = 0;
+    if (this.allEarning.length) {
+      this.allEarning.forEach((item: Earning) => {
         sum += item.totalAmound;
       });
+    }
+    return sum;
   }
-  return sum;
-}
 
   formatDate(input: any) {
     var datePart = input.match(/\d+/g),
@@ -132,13 +132,12 @@ totalEarning(): number {
 
   searchDate(ev: any) {
     if (this.dateFrom && this.dateTo) {
-		if(!this.receipts.length){
-			this.getReceiptFromLocalStore()
-		}
-    if(!this.allEarning.length){
-      this.allEarning =  this._earningService.getAllEarnings();
-
-		}
+      if (!this.receipts.length) {
+        this.getReceiptFromLocalStore();
+      }
+      if (!this.allEarning.length) {
+        this.allEarning = this._earningService.getAllEarnings();
+      }
       let arr = this.receipts.filter((group) => {
         return (
           this.formatDate(group.date) >
@@ -165,23 +164,20 @@ totalEarning(): number {
               `${this.dateTo?.year}.${this.dateTo?.month}.${this.dateTo?.day}`
             )
         );
-      })
+      });
       this.allEarning = earningArr;
       this.isTogleTooltips = this.checkEarningAndSpending();
-      console.log(this.isTogleTooltips);
-      
     }
     ev.close('ss');
   }
 
-  checkEarningAndSpending(): boolean{
+  checkEarningAndSpending(): boolean {
     if (this.totalEarning < this.totalSpending) {
       return false;
     }
-    return true
+    return true;
   }
 
-  
   getContrastYIQ(hexcolor: any) {
     var r = parseInt(hexcolor.substring(1, 3), 16);
     var g = parseInt(hexcolor.substring(3, 5), 16);
@@ -277,8 +273,7 @@ totalEarning(): number {
     this.getReceiptFromLocalStore();
     this.categiriesDate = this.getCategoriesAndTZotalAmound();
     this.convertDateForPie();
-    this.allEarning =  this._earningService.getAllEarnings();
-
+    this.allEarning = this._earningService.getAllEarnings();
   }
 
   getSelectDate(date: any) {

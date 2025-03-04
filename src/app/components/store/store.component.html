@@ -47,7 +47,7 @@
                         <div class="circle"></div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
     <div *ngIf="viewReceipts.length && isShowDate">
@@ -69,8 +69,7 @@
                     </div>
                 </div>
             </div>
-            <a class="btn-large waves-effect light-blue darken-4 btn"
-                (click)="togleShowAllReceipts()">{{!isShowReceipts
+            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="togleShowAllReceipts()">{{!isShowReceipts
                 ? 'Показати всі' : 'Сховати'}}</a>
         </div>
         <div class="wrapper" *ngIf="viewReceipts.length <= 5 ? true : false">

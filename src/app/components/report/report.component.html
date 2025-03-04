@@ -33,18 +33,21 @@
                         <div class="circle"></div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
     <div class="wrapper" *ngIf="isShowDate">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="card report-card">
-                    <h6>Витрати з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' + this.dateFrom.year :
-                        currentDateFrom | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+ this.dateTo.month +
+                    <h6>Витрати з {{this.dateFrom ? this.dateFrom.day + '/'+ this.dateFrom.month + '/' +
+                        this.dateFrom.year :
+                        currentDateFrom | date: 'dd/MM/yy' }} по {{this.dateTo ? this.dateTo.day + '/'+
+                        this.dateTo.month +
                         '/'
                         + this.dateTo.year : currentDate | date: 'dd/MM/yy' }} ({{differenceDays}} дні)</h6>
-                    <p *ngFor="let category of showReportbyReceipt"><span>{{category.name}}</span> - {{category.value}} грн.</p>
+                    <p *ngFor="let category of showReportbyReceipt"><span>{{category.name}}</span> - {{category.value}}
+                        грн.</p>
 
                     <h6>#сумарно{{nameMonth}} - {{totalAmound}} грн</h6>
                 </div>

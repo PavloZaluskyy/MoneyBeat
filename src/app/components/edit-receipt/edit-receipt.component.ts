@@ -22,10 +22,10 @@ import { CategoryService } from '../../services/category.service';
 @Component({
   selector: 'app-edit-receipt',
   templateUrl: './edit-receipt.component.html',
-  styleUrl: './edit-receipt.component.scss'
+  styleUrl: './edit-receipt.component.scss',
 })
-export class EditReceiptComponent  implements OnInit{
-private modalService = inject(NgbModal);
+export class EditReceiptComponent implements OnInit {
+  private modalService = inject(NgbModal);
 
   allReceipt: Receipt[] = [];
   searchAllStore: { name: string; adress: string }[] = [];
@@ -45,7 +45,12 @@ private modalService = inject(NgbModal);
     nameStore: true,
     adressStore: true,
   };
-  isValidGood: {name: boolean; quantity: boolean; category: boolean; price: boolean}[] = []
+  isValidGood: {
+    name: boolean;
+    quantity: boolean;
+    category: boolean;
+    price: boolean;
+  }[] = [];
   modelStoreName: string = '';
   modelAdressStore: string = '';
   modelCategoryGood: string = '';
@@ -63,23 +68,30 @@ private modalService = inject(NgbModal);
     this.searchAllStore = this._receiptService.getAllStore(this.allReceipt);
     this.searchAllGood = this._goodsService.getAllGoods();
     this.searchAllCategory = this._categoryService.getAllCategories();
-    if(this.allReceipt?.length) {
-              this.selectReceipt = this.allReceipt?.filter((item: Receipt) => item.id == Number(this.activeRouter.snapshot.paramMap.get('id')) ? item : null )[0]
-        }
-    for(let i in this.selectReceipt.goods){
-      this.isValidGood.push({name: true, category: true, quantity: true, price: true})
+    if (this.allReceipt?.length) {
+      this.selectReceipt = this.allReceipt?.filter((item: Receipt) =>
+        item.id == Number(this.activeRouter.snapshot.paramMap.get('id'))
+          ? item
+          : null
+      )[0];
     }
-    
+    for (let i in this.selectReceipt.goods) {
+      this.isValidGood.push({
+        name: true,
+        category: true,
+        quantity: true,
+        price: true,
+      });
+    }
   }
   minus(index: number) {
     this.selectReceipt.goods[index].quantity--;
-    if(    this.selectReceipt.goods[index].quantity <= 1) {
-      this.selectReceipt.goods[index].quantity = 1
+    if (this.selectReceipt.goods[index].quantity <= 1) {
+      this.selectReceipt.goods[index].quantity = 1;
     }
-
   }
-  plus(index: number){
-    this.selectReceipt.goods[index].quantity++
+  plus(index: number) {
+    this.selectReceipt.goods[index].quantity++;
   }
   open(content: TemplateRef<any>) {
     this.modalService
@@ -90,15 +102,22 @@ private modalService = inject(NgbModal);
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        },
+        }
       );
   }
   addNewGood() {
-    this.selectReceipt.goods.push({ name: '', quantity: 1, price: '', category: '' });
-    this.isValidGood.push({ name: true,
+    this.selectReceipt.goods.push({
+      name: '',
+      quantity: 1,
+      price: '',
+      category: '',
+    });
+    this.isValidGood.push({
+      name: true,
       quantity: true,
       category: true,
-      price: true})
+      price: true,
+    });
   }
   private getDismissReason(reason: any): string {
     switch (reason) {
@@ -112,7 +131,7 @@ private modalService = inject(NgbModal);
   }
 
   searchStore: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -123,12 +142,12 @@ private modalService = inject(NgbModal);
           : this.searchAllStore
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   searchGood: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -139,23 +158,22 @@ private modalService = inject(NgbModal);
           : this.searchAllGood
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   validationForm(): boolean {
     this.isValidForm.nameStore = true;
     this.isValidForm.adressStore = true;
     // this.isValidGood= [];
-    this.isValidGood = this.isValidGood.map((g:any) => {
+    this.isValidGood = this.isValidGood.map((g: any) => {
       g.name = true;
       g.category = true;
       g.quantity = true;
       g.price = true;
       return g;
-    })
-   
-    
+    });
+
     if (!this.selectReceipt.nameStore.trim()) {
       this.isValidForm.nameStore = false;
       this.messageValid = 'Введіть назву магазину!';
@@ -166,17 +184,17 @@ private modalService = inject(NgbModal);
       this.messageValid = 'Введіть адресу магазину!';
       return false;
     }
-    
-    for(let i in this.selectReceipt.goods){
-      if(!this.selectReceipt.goods[i].name.trim()){
+
+    for (let i in this.selectReceipt.goods) {
+      if (!this.selectReceipt.goods[i].name.trim()) {
         this.isValidGood[+i].name = false;
         return false;
       }
-      if(!this.selectReceipt.goods[i].category.trim()){
+      if (!this.selectReceipt.goods[i].category.trim()) {
         this.isValidGood[+i].category = false;
         return false;
       }
-      if(!this.selectReceipt.goods[i].price){
+      if (!this.selectReceipt.goods[i].price) {
         this.isValidGood[+i].price = false;
         return false;
       }
@@ -185,7 +203,7 @@ private modalService = inject(NgbModal);
   }
 
   searchCategory: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -196,12 +214,12 @@ private modalService = inject(NgbModal);
           : this.searchAllCategory
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   search: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -211,20 +229,23 @@ private modalService = inject(NgbModal);
           ? []
           : this.exemple_goods
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   getTotalAmound(): number {
     return this.selectReceipt.goods.length
-      ? this.selectReceipt.goods.reduce((acc:any, curr:any) => +acc + +curr.price, 0)
+      ? this.selectReceipt.goods.reduce(
+          (acc: any, curr: any) => +acc + +curr.price,
+          0
+        )
       : 0;
   }
 
   parseAddres() {
     const findElement =
       this.searchAllStore.find((item) =>
-        item.name === this.modelStoreName ? item.adress : '',
+        item.name === this.modelStoreName ? item.adress : ''
       )?.adress || undefined;
     if (findElement) {
       this.modelAdressStore = findElement;
@@ -233,7 +254,7 @@ private modalService = inject(NgbModal);
   parseCategoryGood(name: string, index: number) {
     const findElement =
       this.searchAllGood.find((item) =>
-        item.name === name ? item.category : '',
+        item.name === name ? item.category : ''
       )?.category || undefined;
     if (findElement) {
       this.goods[index].category = findElement;
@@ -254,16 +275,17 @@ private modalService = inject(NgbModal);
 
   sentReceipt() {
     if (this.validationForm()) {
-      let arr = this.allReceipt.filter((item: Receipt) => item.id !== this.selectReceipt.id)
-      arr.push(this.selectReceipt)
-      this._receiptService.setReceipt(arr)
-      this.router.navigateByUrl('')
+      let arr = this.allReceipt.filter(
+        (item: Receipt) => item.id !== this.selectReceipt.id
+      );
+      arr.push(this.selectReceipt);
+      this._receiptService.setReceipt(arr);
+      this.router.navigateByUrl('');
     }
   }
 
-  deleteId(){
-   const a = this.allReceipt.filter(v => v.id !=9 && v.id !=10)
-   this._receiptService.setReceipt(a)
+  deleteId() {
+    const a = this.allReceipt.filter((v) => v.id != 9 && v.id != 10);
+    this._receiptService.setReceipt(a);
   }
-
 }

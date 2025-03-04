@@ -70,7 +70,7 @@ export class ScanTextNewTicketComponent implements OnInit {
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        },
+        }
       );
   }
   private getDismissReason(reason: any): string {
@@ -109,7 +109,7 @@ export class ScanTextNewTicketComponent implements OnInit {
     private _receiptService: ReceiptService,
     private _goodsService: GoodsService,
     private _categoryService: CategoryService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -130,15 +130,12 @@ export class ScanTextNewTicketComponent implements OnInit {
         this.isReady(res);
       })
       .then((res: any) => {
-        console.log(res);
         this.extractReceiptData(res.text);
       })
       .catch(console.error);
   }
 
   extractReceiptData(text: string) {
-    console.log(text);
-
     const lines = text.split('\n');
     this.log = lines;
     const items: any[] = [];
@@ -152,7 +149,7 @@ export class ScanTextNewTicketComponent implements OnInit {
       storeName = lines[0].trim();
       matchStoreAdress = line.match(/вул\.\s*(.*?)(?=\n|$)/);
       matchBuyDate = line.match(
-        /\b(\d{1,2})[-/.](\d{1,2})[-/.](\d{2,4})\b|\b(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})\b/g,
+        /\b(\d{1,2})[-/.](\d{1,2})[-/.](\d{2,4})\b|\b(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})\b/g
       ); // /(\d{2}-\d{2}-\d{4})/
 
       if (matchStoreAdress) {
@@ -189,7 +186,7 @@ export class ScanTextNewTicketComponent implements OnInit {
   }
 
   searchStore: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -200,21 +197,21 @@ export class ScanTextNewTicketComponent implements OnInit {
           : this.searchAllStore
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   parseAddres() {
     const findElement =
       this.searchAllStore.find((item) =>
-        item.name === this.parsedData.storeName ? item.adress : '',
+        item.name === this.parsedData.storeName ? item.adress : ''
       )?.adress || undefined;
     if (findElement) {
       this.parsedData.storeAdress = findElement;
     }
   }
   searchGood: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -225,20 +222,20 @@ export class ScanTextNewTicketComponent implements OnInit {
           : this.searchAllGood
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
   parseCategoryGood(name: string, index: number) {
     const findElement =
       this.searchAllGood.find((item) =>
-        item.name === name ? item.category : '',
+        item.name === name ? item.category : ''
       )?.category || undefined;
     if (findElement) {
       this.parsedData.items[index].category = findElement;
     }
   }
   searchCategory: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -249,8 +246,8 @@ export class ScanTextNewTicketComponent implements OnInit {
           : this.searchAllCategory
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   refresh(index: number) {
@@ -277,7 +274,7 @@ export class ScanTextNewTicketComponent implements OnInit {
     return this.parsedData.items.length
       ? this.parsedData.items.reduce(
           (acc: any, curr: any) => +acc + +curr.price,
-          0,
+          0
         )
       : 0;
   }

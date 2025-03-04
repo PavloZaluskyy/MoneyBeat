@@ -1,13 +1,8 @@
 @if (isShowToast) {
-	<ngb-toast
-		header="Категорія була успішно додана!"
-		[delay]="5000"
-		[autohide]="true"
-        [class.bg-warning]="false"
-        class="col s8 offset-4"
-	>
-		
-	</ngb-toast>
+<ngb-toast header="Категорія була успішно додана!" [delay]="5000" [autohide]="true" [class.bg-warning]="false"
+    class="col s8 offset-4">
+
+</ngb-toast>
 }
 <div *ngIf="!checkSign">
     <div class="wrapper-sign">
@@ -15,7 +10,8 @@
             <form [formGroup]="confirmCodeForm">
                 <h3 class="title">ВВедіть PIN-CODE</h3>
                 <div formArrayName="digits">
-                  <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index" #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
+                    <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index"
+                        #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
                     <br><label class="helper-text" *ngIf="messages">{{messages}}</label>
                 </div>
             </form>
@@ -33,13 +29,14 @@
                         <label for="last_name">Введіть назву категорії</label>
                     </div>
                     <a (click)="handleAddCategory()" class="btn-large waves-effect light-blue darken-4 btn">Додати</a>
-                </div>              
+                </div>
             </div>
             <h3 class="title">Спислк категорій:</h3>
             <div class="categories-wrapper">
-                <div class="chip" *ngFor="let category of categories">{{category.name}} <i class="close material-icons" (click)="delete(category.id)">close</i></div>
+                <div class="chip" *ngFor="let category of categories">{{category.name}} <i class="close material-icons"
+                        (click)="delete(category.id)">close</i></div>
                 <p *ngIf="!categories">Немає категорій</p>
             </div>
-        </div>    
+        </div>
     </div>
 </div>

@@ -47,104 +47,101 @@
                         <div class="circle"></div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
-        <ul ngbNav #nav="ngbNav"   [(activeId)]="active" class="nav-tabs">
-            <li [ngbNavItem]="1" *ngIf="isShowDate">
-                <button ngbNavLink>Графік по цінах</button>
-                <ng-template ngbNavContent>
-                    <div class="col s12 m12 l12">
-                        <div class="card">
-                            <google-chart #chart
-                                [type]="type" 
-                                [data]="chartData.data" 
-                                [columns]="chartData.columnNames" 
-                                [options]="chartData.options" 
-                                [width]="chartData.width"
-                                [height]="chartData.height">
-                            </google-chart>
-                        </div>
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1" *ngIf="isShowDate">
+            <button ngbNavLink>Графік по цінах</button>
+            <ng-template ngbNavContent>
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <google-chart #chart [type]="type" [data]="chartData.data" [columns]="chartData.columnNames"
+                            [options]="chartData.options" [width]="chartData.width" [height]="chartData.height">
+                        </google-chart>
                     </div>
-                </ng-template>
-            </li>
-            <li [ngbNavItem]="2" *ngIf="isShowDate">
-                <button ngbNavLink>Графік по кількості</button>
-                <ng-template ngbNavContent>
-                    <div class="col s12 m12 l12">
-                        <div class="card">
-                            <google-chart #chart
-                                [type]="type" 
-                                [data]="chartDataQuanity.data" 
-                                [columns]="chartDataQuanity.columnNames" 
-                                [options]="chartDataQuanity.options" 
-                                [width]="chartDataQuanity.width"
-                                [height]="chartDataQuanity.height">
-                            </google-chart>
-                        </div>
+                </div>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2" *ngIf="isShowDate">
+            <button ngbNavLink>Графік по кількості</button>
+            <ng-template ngbNavContent>
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <google-chart #chart [type]="type" [data]="chartDataQuanity.data"
+                            [columns]="chartDataQuanity.columnNames" [options]="chartDataQuanity.options"
+                            [width]="chartDataQuanity.width" [height]="chartDataQuanity.height">
+                        </google-chart>
                     </div>
-                </ng-template>
-            </li>
-        </ul>
-        <div [ngbNavOutlet]="nav" *ngIf="isShowDate" class="mt-2"></div>
-        <div *ngIf="isShowDate">
-            <div *ngIf="viewGoods.length">
-                <div class="wrapper" *ngIf="viewGoods.length > 5 ? true : false">
-                    <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
-                        <div class="col s12 m12 l12" [routerLink]="['/detail', receipt.id]">
-                            <div class="card">
-                                <div class="flex fcol">
-                                    <div class="about-store m-l-r-2rem">
-                                        <h5>{{receipt.storeName}}</h5>
-                                        <span>{{receipt.addressStore}}</span>
-                                    </div>
-                                    <div class="flex">
-                                        <div class="price m-l-r-2rem">{{receipt.totalAmound | currency:'₴
-                                            ':'symbol':'2.2-3':'en'}}</div>
-                                        <div class="date m-l-r-2rem">{{receipt.date}}</div>
-                                    </div>
-                                    <div class="flex">
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem" [routerLink]="['/good', receipt.name]">СТАТИСТИКА МАГАЗ. <i class="material-icons">insert_chart</i></a>
+                </div>
+            </ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" *ngIf="isShowDate" class="mt-2"></div>
+    <div *ngIf="isShowDate">
+        <div *ngIf="viewGoods.length">
+            <div class="wrapper" *ngIf="viewGoods.length > 5 ? true : false">
+                <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
+                    <div class="col s12 m12 l12" [routerLink]="['/detail', receipt.id]">
+                        <div class="card">
+                            <div class="flex fcol">
+                                <div class="about-store m-l-r-2rem">
+                                    <h5>{{receipt.storeName}}</h5>
+                                    <span>{{receipt.addressStore}}</span>
                                 </div>
+                                <div class="flex">
+                                    <div class="price m-l-r-2rem">{{receipt.totalAmound | currency:'₴
+                                        ':'symbol':'2.2-3':'en'}}</div>
+                                    <div class="date m-l-r-2rem">{{receipt.date}}</div>
+                                </div>
+                                <div class="flex">
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem"
+                                        [routerLink]="['/good', receipt.name]">СТАТИСТИКА МАГАЗ. <i
+                                            class="material-icons">insert_chart</i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a class="btn-large waves-effect light-blue darken-4 btn" (click)="togleShowAllReceipts()">{{!isShowReceipts
-                        ? 'Показати всі' : 'Сховати'}}</a>
                 </div>
-                <div class="wrapper" *ngIf="viewGoods.length <= 5 ? true : false">
-                    <div class="row margin-zero" *ngFor="let receipt of viewGoods">
-                        <div class="col s12 m12 l12" [routerLink]="['/detail', receipt.id]">
-                            <div class="card">
-                                <div class="flex fcol">
-                                    <div class="about-store m-l-r-2rem">
-                                        <h5>{{receipt.storeName}}</h5>
-                                        <span>{{receipt.addressStore}}</span>
-                                    </div>
-                                    <div class="flex">
-                                        <div class="price m-l-r-2rem">{{receipt.totalAmound | currency:'₴
-                                            ':'symbol':'2.2-3':'en'}}</div>
-                                        <div class="date m-l-r-2rem">{{receipt.date}}</div>
-                                    </div>
-                                    <div class="flex">
-                                    
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem " [routerLink]="['/good', receipt.name]">СТАТИСТИКА МАГАЗ. <i class="material-icons">insert_chart</i></a>
-                                </div>
-        
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="viewGoods.length >= 5" (click)="togleShowAllReceipts()">{{!isShowReceipts
-                        ? 'Показати всі' : 'Сховати'}}</a>
-                </div>
+                <a class="btn-large waves-effect light-blue darken-4 btn"
+                    (click)="togleShowAllReceipts()">{{!isShowReceipts
+                    ? 'Показати всі' : 'Сховати'}}</a>
             </div>
-            <div *ngIf="!viewGoods.length">
-                <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
+            <div class="wrapper" *ngIf="viewGoods.length <= 5 ? true : false">
+                <div class="row margin-zero" *ngFor="let receipt of viewGoods">
+                    <div class="col s12 m12 l12" [routerLink]="['/detail', receipt.id]">
+                        <div class="card">
+                            <div class="flex fcol">
+                                <div class="about-store m-l-r-2rem">
+                                    <h5>{{receipt.storeName}}</h5>
+                                    <span>{{receipt.addressStore}}</span>
+                                </div>
+                                <div class="flex">
+                                    <div class="price m-l-r-2rem">{{receipt.totalAmound | currency:'₴
+                                        ':'symbol':'2.2-3':'en'}}</div>
+                                    <div class="date m-l-r-2rem">{{receipt.date}}</div>
+                                </div>
+                                <div class="flex">
+
+                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem "
+                                        [routerLink]="['/good', receipt.name]">СТАТИСТИКА МАГАЗ. <i
+                                            class="material-icons">insert_chart</i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="viewGoods.length >= 5"
+                    (click)="togleShowAllReceipts()">{{!isShowReceipts
+                    ? 'Показати всі' : 'Сховати'}}</a>
             </div>
         </div>
-      
+        <div *ngIf="!viewGoods.length">
+            <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
+        </div>
+    </div>
+
 </div>
 <ng-template #content let-modal>
     <div class="modal-header">

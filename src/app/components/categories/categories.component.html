@@ -47,7 +47,7 @@
                         <div class="circle"></div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
     <div class="wrapper" *ngIf="isShowDate">
@@ -72,65 +72,70 @@
         </div>
     </div>
     <div *ngIf="viewGoods.length && isShowDate">
-            <div class="wrapper" *ngIf="viewGoods.length > 5 ? true : false">
-                <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
-                    <div class="col s12 m12 l12">
-                        <div class="card">
-                            <div class="flex fcol">
-                                <div class="about-store m-l-r-2rem">
-                                    <h5>{{receipt.name}} ({{receipt.quantity}})</h5>
-                                    <span>{{receipt.storeName}}</span>
+        <div class="wrapper" *ngIf="viewGoods.length > 5 ? true : false">
+            <div class="row margin-zero" *ngFor="let receipt of cutReceiptsArr()">
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <div class="flex fcol">
+                            <div class="about-store m-l-r-2rem">
+                                <h5>{{receipt.name}} ({{receipt.quantity}})</h5>
+                                <span>{{receipt.storeName}}</span>
+                            </div>
+                            <div class="flex">
+                                <div class="price m-l-r-2rem">{{receipt.price | currency:'₴':'symbol':'2.2-3':'en'}}
                                 </div>
-                                <div class="flex">
-                                    <div class="price m-l-r-2rem">{{receipt.price | currency:'₴':'symbol':'2.2-3':'en'}}</div>
-                                    <div class="date m-l-r-2rem">{{receipt.data}}</div>
-                                </div>
-                                <div class="flex">
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem" [routerLink]="['/detail', receipt.id]">ДО
-                                        ЧЕКУ <i class="material-icons">receipt</i></a>
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem margin-left-1rem" [routerLink]="['/good', receipt.name]">ДО
-                                        СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
-                                </div>
+                                <div class="date m-l-r-2rem">{{receipt.data}}</div>
+                            </div>
+                            <div class="flex">
+                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem"
+                                    [routerLink]="['/detail', receipt.id]">ДО
+                                    ЧЕКУ <i class="material-icons">receipt</i></a>
+                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem margin-left-1rem"
+                                    [routerLink]="['/good', receipt.name]">ДО
+                                    СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a class="btn-large waves-effect light-blue darken-4 btn"
-                    (click)="togleShowAllReceipts()">{{!isShowReceipts
-                    ? 'Показати всі' : 'Сховати'}}</a>
             </div>
-            <div class="wrapper" *ngIf="viewGoods.length <= 5 ? true : false">
-                <div class="row margin-zero" *ngFor="let receipt of viewGoods">
-                    <div class="col s12 m12 l12">
-                        <div class="card">
-                            <div class="flex fcol">
-                                <div class="about-store m-l-r-2rem">
-                                    <h5>{{receipt.name}} ({{receipt.quantity}})</h5>
-                                    <span>{{receipt.storeName}} </span>
+            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="togleShowAllReceipts()">{{!isShowReceipts
+                ? 'Показати всі' : 'Сховати'}}</a>
+        </div>
+        <div class="wrapper" *ngIf="viewGoods.length <= 5 ? true : false">
+            <div class="row margin-zero" *ngFor="let receipt of viewGoods">
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <div class="flex fcol">
+                            <div class="about-store m-l-r-2rem">
+                                <h5>{{receipt.name}} ({{receipt.quantity}})</h5>
+                                <span>{{receipt.storeName}} </span>
+                            </div>
+                            <div class="flex">
+                                <div class="price m-l-r-2rem">{{receipt.price | currency:'₴':'symbol':'2.2-3':'en'}}
                                 </div>
-                                <div class="flex">
-                                    <div class="price m-l-r-2rem">{{receipt.price | currency:'₴':'symbol':'2.2-3':'en'}}</div>
-                                    <div class="date m-l-r-2rem">{{receipt.data}}</div>
-                                </div>
-                                <div class="flex">
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem" [routerLink]="['/detail', receipt.id]">ДО
-                                        ЧЕКУ <i class="material-icons">receipt</i></a>
-                                    <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem" [routerLink]="['/good', receipt.name]">ДО
-                                        СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
-                                </div>
+                                <div class="date m-l-r-2rem">{{receipt.data}}</div>
+                            </div>
+                            <div class="flex">
+                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem"
+                                    [routerLink]="['/detail', receipt.id]">ДО
+                                    ЧЕКУ <i class="material-icons">receipt</i></a>
+                                <a class="btn-large waves-effect light-blue darken-4 btn margin-btn-1rem"
+                                    [routerLink]="['/good', receipt.name]">ДО
+                                    СТАТИСТИКИ <i class="material-icons">insert_chart</i></a>
+                            </div>
 
-                            </div>
                         </div>
                     </div>
                 </div>
-                <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="viewGoods.length >= 5"
-                    (click)="togleShowAllReceipts()">{{!isShowReceipts
-                    ? 'Показати всі' : 'Сховати'}}</a>
             </div>
+            <a class="btn-large waves-effect light-blue darken-4 btn" *ngIf="viewGoods.length >= 5"
+                (click)="togleShowAllReceipts()">{{!isShowReceipts
+                ? 'Показати всі' : 'Сховати'}}</a>
         </div>
-        <div *ngIf="!viewGoods.length">
-            <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
-        </div>
+    </div>
+    <div *ngIf="!viewGoods.length">
+        <h4 class="title">У вибраному періоді не має витрат та надходжень</h4>
+    </div>
 </div>
 
 <ng-template #content let-modal>

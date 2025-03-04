@@ -4,7 +4,8 @@
             <form [formGroup]="confirmCodeForm">
                 <h3 class="title">ВВедіть PIN-CODE</h3>
                 <div formArrayName="digits">
-                  <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index" #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
+                    <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index"
+                        #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
                     <br><label class="helper-text" *ngIf="messages">{{messages}}</label>
                 </div>
             </form>
@@ -18,37 +19,32 @@
             <div class="row">
                 <div ngbAccordion #accordion="ngbAccordion">
                     <div [ngbAccordionItem]="'receipt-'+ index" *ngFor="let earning of allEarning; let index = index">
-                        <div ngbAccordionHeader ngbAccordionToggle class="accordion-button custom-header justify-content-between ">
+                        <div ngbAccordionHeader ngbAccordionToggle
+                            class="accordion-button custom-header justify-content-between ">
                             <p class="m-0">{{earning.date}}</p>
                             <p class="m-0">{{earning.nameEarning}}</p>
                             <p class="m-0">{{earning.totalAmound}} ₴</p>
-                            
+
                         </div>
                         <div ngbAccordionCollapse>
                             <div ngbAccordionBody>
                                 <ng-template>
-                                   <p>{{earning.description}}</p>
-                                   <!-- </div> -->
-                                   <div class="btns-wrapper">
-           
-                                    <a
-                                    class="btn-small waves-effect light-blue darken-4 btn" 
-                                    [routerLink]="['/earning-details', earning.id]"
-                                    > <i class="material-icons">
-                                        visibility
-                                    </i></a>
-                                    <a
-                                    class="btn-small waves-effect light-blue darken-4 btn" 
-                                    [routerLink]="['/edit-earning', earning.id]"
-                                    > <i class="material-icons">
-                                        edit
-                                    </i></a>
-                                    <a
-                                    class="btn-small waves-effect light-blue darken-4 btn" 
-                                    (click)="delete(earning.id)"
-                                    > <i class="material-icons">
-                                        delete
-                                    </i></a>
+                                    <p>{{earning.description}}</p>
+                                    <!-- </div> -->
+                                    <div class="btns-wrapper">
+
+                                        <a class="btn-small waves-effect light-blue darken-4 btn"
+                                            [routerLink]="['/earning-details', earning.id]"> <i class="material-icons">
+                                                visibility
+                                            </i></a>
+                                        <a class="btn-small waves-effect light-blue darken-4 btn"
+                                            [routerLink]="['/edit-earning', earning.id]"> <i class="material-icons">
+                                                edit
+                                            </i></a>
+                                        <a class="btn-small waves-effect light-blue darken-4 btn"
+                                            (click)="delete(earning.id)"> <i class="material-icons">
+                                                delete
+                                            </i></a>
                                     </div>
                                 </ng-template>
                             </div>

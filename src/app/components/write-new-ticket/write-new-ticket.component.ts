@@ -44,12 +44,19 @@ export class WriteNewTicketComponent implements OnInit {
     nameStore: true,
     adressStore: true,
   };
-  isValidGood: {name: boolean; quantity: boolean; category: boolean; price: boolean}[] = [{
-    name: true,
-    quantity: true,
-    category: true,
-    price: true
-  }]
+  isValidGood: {
+    name: boolean;
+    quantity: boolean;
+    category: boolean;
+    price: boolean;
+  }[] = [
+    {
+      name: true,
+      quantity: true,
+      category: true,
+      price: true,
+    },
+  ];
   modelStoreName: string = '';
   modelAdressStore: string = '';
   modelCategoryGood: string = '';
@@ -58,7 +65,7 @@ export class WriteNewTicketComponent implements OnInit {
     private _receiptService: ReceiptService,
     private _goodsService: GoodsService,
     private _categoryService: CategoryService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -76,15 +83,17 @@ export class WriteNewTicketComponent implements OnInit {
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-        },
+        }
       );
   }
   addNewGood() {
     this.goods.push({ name: '', quantity: 0, price: '', category: '' });
-    this.isValidGood.push({ name: true,
+    this.isValidGood.push({
+      name: true,
       quantity: true,
       category: true,
-      price: true})
+      price: true,
+    });
   }
   private getDismissReason(reason: any): string {
     switch (reason) {
@@ -98,7 +107,7 @@ export class WriteNewTicketComponent implements OnInit {
   }
 
   searchStore: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -109,12 +118,12 @@ export class WriteNewTicketComponent implements OnInit {
           : this.searchAllStore
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   searchGood: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -125,20 +134,20 @@ export class WriteNewTicketComponent implements OnInit {
           : this.searchAllGood
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   validationForm(): boolean {
     this.isValidForm.nameStore = true;
     this.isValidForm.adressStore = true;
-    this.isValidGood = this.isValidGood.map(g => {
+    this.isValidGood = this.isValidGood.map((g) => {
       g.name = true;
       g.category = true;
       g.quantity = true;
       g.price = true;
       return g;
-    })
+    });
     if (!this.modelStoreName.trim()) {
       this.isValidForm.nameStore = false;
       this.messageValid = 'Введіть назву магазину!';
@@ -149,29 +158,29 @@ export class WriteNewTicketComponent implements OnInit {
       this.messageValid = 'Введіть адресу магазину!';
       return false;
     }
-    for(let i in this.goods){
+    for (let i in this.goods) {
       if (!this.goods[i].name.trim()) {
         this.isValidGood[i].name = false;
-        return false
+        return false;
       }
       if (!this.goods[i].quantity) {
         this.isValidGood[i].quantity = false;
-        return false
+        return false;
       }
       if (!this.goods[i].category.trim()) {
         this.isValidGood[i].category = false;
-        return false
+        return false;
       }
       if (!this.goods[i].price) {
         this.isValidGood[i].price = false;
-        return false
+        return false;
       }
     }
     return true;
   }
 
   searchCategory: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -182,12 +191,12 @@ export class WriteNewTicketComponent implements OnInit {
           : this.searchAllCategory
               .map((item) => item.name)
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   search: OperatorFunction<string, readonly string[]> = (
-    text$: Observable<string>,
+    text$: Observable<string>
   ) =>
     text$.pipe(
       debounceTime(200),
@@ -197,8 +206,8 @@ export class WriteNewTicketComponent implements OnInit {
           ? []
           : this.exemple_goods
               .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
-      ),
+              .slice(0, 10)
+      )
     );
 
   getTotalAmound(): number {
@@ -210,7 +219,7 @@ export class WriteNewTicketComponent implements OnInit {
   parseAddres() {
     const findElement =
       this.searchAllStore.find((item) =>
-        item.name === this.modelStoreName ? item.adress : '',
+        item.name === this.modelStoreName ? item.adress : ''
       )?.adress || undefined;
     if (findElement) {
       this.modelAdressStore = findElement;
@@ -219,7 +228,7 @@ export class WriteNewTicketComponent implements OnInit {
   parseCategoryGood(name: string, index: number) {
     const findElement =
       this.searchAllGood.find((item) =>
-        item.name === name ? item.category : '',
+        item.name === name ? item.category : ''
       )?.category || undefined;
     if (findElement) {
       this.goods[index].category = findElement;
@@ -238,14 +247,13 @@ export class WriteNewTicketComponent implements OnInit {
     }
   }
   minus(index: number) {
-    this.goods
+    this.goods;
     this.goods[index].quantity = +this.goods[index].quantity - 1;
-    if(+this.goods[index].quantity <= 1) {
-      this.goods[index].quantity = 1
+    if (+this.goods[index].quantity <= 1) {
+      this.goods[index].quantity = 1;
     }
-
   }
-  plus(index: number){
+  plus(index: number) {
     this.goods[index].quantity = +this.goods[index].quantity + 1;
   }
 
@@ -261,7 +269,11 @@ export class WriteNewTicketComponent implements OnInit {
             this.modelDate?.month +
             '.' +
             this.modelDate?.year
-          : this.currentDate.getDate() + '.' + (this.currentDate.getMonth() + 1) + '.' + this.currentDate.getFullYear(),
+          : this.currentDate.getDate() +
+            '.' +
+            (this.currentDate.getMonth() + 1) +
+            '.' +
+            this.currentDate.getFullYear(),
         goods: this.goods,
         totalAmaund: this.getTotalAmound(),
       };
@@ -272,9 +284,8 @@ export class WriteNewTicketComponent implements OnInit {
     }
   }
 
-  deleteId(){
-   const a = this.allReceipt.filter(v => v.id !=9 && v.id !=10)
-   console.log(a);
-   this._receiptService.setReceipt(a)
+  deleteId() {
+    const a = this.allReceipt.filter((v) => v.id != 9 && v.id != 10);
+    this._receiptService.setReceipt(a);
   }
 }

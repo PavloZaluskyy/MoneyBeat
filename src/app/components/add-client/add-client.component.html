@@ -4,101 +4,74 @@
             <li [ngbNavItem]="1">
                 <button ngbNavLink>1</button>
                 <ng-template ngbNavContent>
-                    <p class="title">Привіт! Ви вперше запустили додаток, давайте пройдемо декілька простих кроків для кращого налаштування його під Вас, та Ваші потреби.</p>
+                    <p class="title">Привіт! Ви вперше запустили додаток, давайте пройдемо декілька простих кроків для
+                        кращого налаштування його під Вас, та Ваші потреби.</p>
                     <div class="row">
                         <div class="input-field col s6">
-                          <input 
-                          [class.validate]="isValidation.name"
-                          [class.invalidate]="!isValidation.name"
-                          aria-required="true"
-                          placeholder=""
-                          [(ngModel)]="name"
-                          (ngModelChange)="validationForm()"
-
-                          id="first_name" type="text">
-                          <label for="first_name">Введіть Ваше ім'я</label>
-                          <span
-                            class="helper-text"
-                            *ngIf="!isValidation.name"
-                            data-error="wrong"
-                            data-success="right"
-                            >ВВедіть Ваше ім'я</span
-                            >
+                            <input [class.validate]="isValidation.name" [class.invalidate]="!isValidation.name"
+                                aria-required="true" placeholder="" [(ngModel)]="name"
+                                (ngModelChange)="validationForm()" id="first_name" type="text">
+                            <label for="first_name">Введіть Ваше ім'я</label>
+                            <span class="helper-text" *ngIf="!isValidation.name" data-error="wrong"
+                                data-success="right">ВВедіть Ваше ім'я</span>
                         </div>
                     </div>
-                    <a
-                    class="btn-large waves-effect light-blue darken-4 btn" [class.disabled]="!isValidation.name"
-                    (click)="nextStep(2)"
-                    >Наступний крок</a>                </ng-template>
+                    <a class="btn-large waves-effect light-blue darken-4 btn" [class.disabled]="!isValidation.name"
+                        (click)="nextStep(2)">Наступний крок</a>
+                </ng-template>
             </li>
             <li [ngbNavItem]="2">
                 <button ngbNavLink>2</button>
                 <ng-template ngbNavContent>
-                   <p class="title">Наступний крок введіть суму коштів які у вас на картці.</p>
-                   <p class="title">Це необхідно для точних розрахунків та аналізу витрат. ВВедіть суму в гривнях.</p>
-                   <div class="row">
-                    <div class="input-field col s6">
-                      <input 
-                      [class.validate]="isValidation.moneyInCard"
-                      [class.invalidate]="!isValidation.moneyInCard"
-                      aria-required="true"
-                      placeholder=""
-                      type="number"
-                      [(ngModel)]="moneyInCard"
-                      (ngModelChange)="validationForm()"
+                    <p class="title">Наступний крок введіть суму коштів які у вас на картці.</p>
+                    <p class="title">Це необхідно для точних розрахунків та аналізу витрат. ВВедіть суму в гривнях.</p>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input [class.validate]="isValidation.moneyInCard"
+                                [class.invalidate]="!isValidation.moneyInCard" aria-required="true" placeholder=""
+                                type="number" [(ngModel)]="moneyInCard" (ngModelChange)="validationForm()"
+                                id="first_name">
+                            <label for="first_name">Введіть суму Ваших коштів</label>
+                            <span class="helper-text" *ngIf="!isValidation.moneyInCard" data-error="wrong"
+                                data-success="right">ВВедіть суму коштів на вашому рахунку</span>
 
-                      id="first_name">
-                      <label for="first_name">Введіть суму Ваших коштів</label>
-                      <span
-                            class="helper-text"
-                            *ngIf="!isValidation.moneyInCard"
-                            data-error="wrong"
-                            data-success="right"
-                            >ВВедіть суму коштів на вашому рахунку</span
-                            >
+                        </div>
+                        <div class="btns-wrapper">
+                            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="nextStep(1)">Попередній
+                                крок</a>
+                            <a class="btn-large waves-effect light-blue darken-4 btn"
+                                [class.disabled]="!isValidation.moneyInCard" (click)="nextStep(3)">Наступний крок</a>
+                        </div>
 
                     </div>
-                    <div class="btns-wrapper">
-                        <a
-                    class="btn-large waves-effect light-blue darken-4 btn"
-                    (click)="nextStep(1)"
-                    >Попередній крок</a>
-                    <a
-                    class="btn-large waves-effect light-blue darken-4 btn" [class.disabled]="!isValidation.moneyInCard"
-                    (click)="nextStep(3)"
-                    >Наступний крок</a>
-                    </div>
-                    
-                </div>
-           
+
                 </ng-template>
             </li>
             <li [ngbNavItem]="3">
                 <button ngbNavLink>3</button>
                 <ng-template ngbNavContent>
-                    <p class="title">Останній крок! Лишилося ввести PIN-CODE. Він необхідний для доступу в деякі поля налаштувань додатка. </p>
+                    <p class="title">Останній крок! Лишилося ввести PIN-CODE. Він необхідний для доступу в деякі поля
+                        налаштувань додатка. </p>
                     <p class="title">Позамовчуванню PIN-CODE буде <strong>1 0 0 8</strong></p>
                     <p>
                         <label>
-                          <input type="checkbox" [(ngModel)]="checkSign"/>
-                          <span>Вводити PIN-CODE кожного разу коли входите в додаток</span>
+                            <input type="checkbox" [(ngModel)]="checkSign" />
+                            <span>Вводити PIN-CODE кожного разу коли входите в додаток</span>
                         </label>
-                      </p>
+                    </p>
                     <!-- <input type="checkbox" [(ngModel)]="checkSign" id="checkout"/> -->
                     <!-- <label for="checkout">Вводити PIN-CODE кожного разу коли входите в додаток</label> -->
                     <form [formGroup]="confirmCodeForm">
                         <div formArrayName="digits">
-                          <input class="pincode" *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index" #inputs [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
+                            <input class="pincode"
+                                *ngFor="let field of confirmCodeForm.get('digits').controls; let i = index" #inputs
+                                [maxLength]="1" [formControlName]="i" (keydown)="check(i, field, $event)">
                         </div>
                         <div class="btns-wrapper">
-                            <a
-                        class="btn-large waves-effect light-blue darken-4 btn"
-                        (click)="nextStep(1)"
-                        >Попередній крок</a>
-                        <a
-                        class="btn-large waves-effect light-blue darken-4 btn"
-                        (click)="createClient()"
-                        >Завершити</a>
+                            <a class="btn-large waves-effect light-blue darken-4 btn" (click)="nextStep(1)">Попередній
+                                крок</a>
+                            <a class="btn-large waves-effect light-blue darken-4 btn"
+                                (click)="createClient()">Завершити</a>
                         </div>
                     </form>
                 </ng-template>
@@ -106,24 +79,20 @@
             <li [ngbNavItem]="4">
                 <button ngbNavLink>Посібник</button>
                 <ng-template ngbNavContent>
-                   <p class="title">Чи бажаєте перейти в посібник?</p>
-                   <p class="title">Ви завжди зможете перейти до нього в налаштуваннях!</p>
+                    <p class="title">Чи бажаєте перейти в посібник?</p>
+                    <p class="title">Ви завжди зможете перейти до нього в налаштуваннях!</p>
                     <div class="btns-wrapper">
-                        <a
-                    class="btn-large waves-effect light-blue darken-4 btn"
-                    (click)="isGoToManual(false)"
-                    >Перейти в додаток</a>
-                    <a
-                    class="btn-large waves-effect light-blue darken-4 btn"
-                    (click)="isGoToManual(true)"
-                    >Перейти до посібника</a>
-                    </div>           
+                        <a class="btn-large waves-effect light-blue darken-4 btn" (click)="isGoToManual(false)">Перейти
+                            в додаток</a>
+                        <a class="btn-large waves-effect light-blue darken-4 btn" (click)="isGoToManual(true)">Перейти
+                            до посібника</a>
+                    </div>
                 </ng-template>
             </li>
         </ul>
-        
+
         <div [ngbNavOutlet]="nav" class="mt-2"></div>
-        
+
     </div>
-    
+
 </div>
