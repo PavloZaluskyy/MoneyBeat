@@ -52,7 +52,7 @@ export class FinancesComponent implements OnInit {
       alignment: 'start',
     },
   };
-  width = 350;
+  width = 300;
   height = 400;
 
   categiriesDate: { name: string; value: number; color: string }[] | null = [];
