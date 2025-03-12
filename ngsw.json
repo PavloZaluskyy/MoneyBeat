@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1741807062934,
+  "timestamp": 1741807822198,
   "index": "https://pavlozaluskyy.github.io/MoneyBeat/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "https://pavlozaluskyy.github.io/MoneyBeat/chunk-XXU374N7.js",
         "https://pavlozaluskyy.github.io/MoneyBeat/favicon.ico",
         "https://pavlozaluskyy.github.io/MoneyBeat/index.html",
-        "https://pavlozaluskyy.github.io/MoneyBeat/main-HBOBSY2C.js",
+        "https://pavlozaluskyy.github.io/MoneyBeat/main-JBAJPDG6.js",
         "https://pavlozaluskyy.github.io/MoneyBeat/manifest.webmanifest",
         "https://pavlozaluskyy.github.io/MoneyBeat/polyfills-EJ46DL77.js",
         "https://pavlozaluskyy.github.io/MoneyBeat/scripts-24KUUF7K.js",
@@ -76,8 +76,8 @@
     "https://pavlozaluskyy.github.io/MoneyBeat/chunk-TXG5WOLH.js": "36f5ad5f26c3f3417ef1eaebc25a75f2f801fa94",
     "https://pavlozaluskyy.github.io/MoneyBeat/chunk-XXU374N7.js": "3be4e53e5a9405fda65b6ed33d28441e8596a6a4",
     "https://pavlozaluskyy.github.io/MoneyBeat/favicon.ico": "b82d0bfcdbbcc74966275a8741deb96fd0f314e4",
-    "https://pavlozaluskyy.github.io/MoneyBeat/index.html": "1a332c10d20556e016c3d8049a218c9055fce931",
-    "https://pavlozaluskyy.github.io/MoneyBeat/main-HBOBSY2C.js": "6060a968b3b8e37e1bbf05a4df91492a7cc29f90",
+    "https://pavlozaluskyy.github.io/MoneyBeat/index.html": "b878ba18876fa638f948f77908235808cd1ea32e",
+    "https://pavlozaluskyy.github.io/MoneyBeat/main-JBAJPDG6.js": "ca948f0e215539ee8b05fdd52b8cf57501058d86",
     "https://pavlozaluskyy.github.io/MoneyBeat/manifest.webmanifest": "158f31da3bf00046ad3043cd4ce77a88181fe0af",
     "https://pavlozaluskyy.github.io/MoneyBeat/polyfills-EJ46DL77.js": "01500e27968fb09f51100a67f46a69297cc263de",
     "https://pavlozaluskyy.github.io/MoneyBeat/scripts-24KUUF7K.js": "b8253c68bc1df51c3231faf715b26700a5831652",
