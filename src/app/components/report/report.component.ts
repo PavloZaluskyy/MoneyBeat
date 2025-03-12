@@ -21,7 +21,7 @@ export class ReportComponent implements OnInit {
 
   differenceDays: number = 0;
   totalAmound: number = 0;
-  nameMonth: string = '';
+  nameMonth: any = '';
   isShowReceipts: boolean = false;
   isShowDate: boolean = false;
   isLoader: boolean = false;
@@ -89,7 +89,7 @@ export class ReportComponent implements OnInit {
     } else {
       date1 = new Date(`${date.year}-${date.month}-${date.day}`);
     }
-    this.nameMonth = date.toLocaleString('default', { month: 'long' });
+    this.nameMonth = date1.toLocaleString('default', { month: 'long' }); 
   }
 
   getReceiptByDateAndCategory(startDate: any, endDate: any) {
