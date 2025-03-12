@@ -1,0 +1,105 @@
+{
+  "configVersion": 1,
+  "timestamp": 1741802973401,
+  "index": "https://pavlozaluskyy.github.io/MoneyBeat/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://pavlozaluskyy.github.io/MoneyBeat/chunk-TXG5WOLH.js",
+        "https://pavlozaluskyy.github.io/MoneyBeat/chunk-XXU374N7.js",
+        "https://pavlozaluskyy.github.io/MoneyBeat/favicon.ico",
+        "https://pavlozaluskyy.github.io/MoneyBeat/index.html",
+        "https://pavlozaluskyy.github.io/MoneyBeat/main-MC7Z7LYA.js",
+        "https://pavlozaluskyy.github.io/MoneyBeat/manifest.webmanifest",
+        "https://pavlozaluskyy.github.io/MoneyBeat/polyfills-EJ46DL77.js",
+        "https://pavlozaluskyy.github.io/MoneyBeat/scripts-24KUUF7K.js",
+        "https://pavlozaluskyy.github.io/MoneyBeat/styles-ZVBJHJSN.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-128x128.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-144x144.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-152x152.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-192x192.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-384x384.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-512x512.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-72x72.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-96x96.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/1677262090_bogatyr-club-p-investitsii-fon-krasivii-fon-1.jpg",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/LOGO.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/logo2.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/manual/earning.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/manual/finances.png",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (1).jpg",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (2).jpg",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (3).jpg",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (4).jpg",
+        "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-128x128.png": "02c4a4de4bf208355474d284f067ff6c6405af7b",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-144x144.png": "ee9c442d45f310e244df3552b117d9b644b6e115",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-152x152.png": "1aca656453f972bf974bd22ec08ae8dfa8fc2ea3",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-192x192.png": "5b9480a88412b0e71292aa9f2b9437182a9ab323",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-384x384.png": "65481938bbf8ab69a0bb2bdd2763798280b7dfc0",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-512x512.png": "7be2b36c2a2253308d4fdb36cb4f2676b9b5a78b",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-72x72.png": "a0400e7da679f5e37f133913f1acb5784d591af5",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/icons/icon-96x96.png": "a9ab89824a6b91f0ee2dee9fd1d6e979a050dfaa",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/1677262090_bogatyr-club-p-investitsii-fon-krasivii-fon-1.jpg": "409c7a4625557ba6a600014aee5cc9da44fef795",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/LOGO.png": "2c2101b3f564fa96cb9a7a1dfee28a70b2e879b2",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/logo2.png": "5cc2e3a6e810f15af092ab196f3fa20ed27177d2",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/manual/earning.png": "3db6f50d2b38626512687d1a61b3be7f28078c3c",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/manual/finances.png": "69e21a0c01fd4c2c000dcd4a50a0cc65eda52899",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (1).jpg": "aef6e8475f3dad793e2fb232f572d8ec507bedc5",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (2).jpg": "711a7f9e8eae6b74d1f1508c014def02b16617fe",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (3).jpg": "1287f2bcf00b68cc64cbe3e66a56abcfb8ab06d3",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження (4).jpg": "72f09f1a03493b96a0d55db0b093c42b6206a266",
+    "https://pavlozaluskyy.github.io/MoneyBeat/assets/image/завантаження.jpg": "e0daa634eeb223fb40af05dbb7f6d5b75b737875",
+    "https://pavlozaluskyy.github.io/MoneyBeat/chunk-TXG5WOLH.js": "36f5ad5f26c3f3417ef1eaebc25a75f2f801fa94",
+    "https://pavlozaluskyy.github.io/MoneyBeat/chunk-XXU374N7.js": "3be4e53e5a9405fda65b6ed33d28441e8596a6a4",
+    "https://pavlozaluskyy.github.io/MoneyBeat/favicon.ico": "b82d0bfcdbbcc74966275a8741deb96fd0f314e4",
+    "https://pavlozaluskyy.github.io/MoneyBeat/index.html": "ab2f366f638dcf51f60e3d47a44e70fbefddca41",
+    "https://pavlozaluskyy.github.io/MoneyBeat/main-MC7Z7LYA.js": "7ef5305a8bf1df02772edccbda229638e18f2a92",
+    "https://pavlozaluskyy.github.io/MoneyBeat/manifest.webmanifest": "f09d54ace890577eee0f26f0b4393cf2f20ed928",
+    "https://pavlozaluskyy.github.io/MoneyBeat/polyfills-EJ46DL77.js": "01500e27968fb09f51100a67f46a69297cc263de",
+    "https://pavlozaluskyy.github.io/MoneyBeat/scripts-24KUUF7K.js": "b8253c68bc1df51c3231faf715b26700a5831652",
+    "https://pavlozaluskyy.github.io/MoneyBeat/styles-ZVBJHJSN.css": "2559c0df003a47f82de9da5e079e8744248a3cdb"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
